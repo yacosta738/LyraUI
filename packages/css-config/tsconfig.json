@@ -1,0 +1,5 @@
+{
+  "extends": "@lyra/tsconfig/tsconfig.node.json",
+  "include": ["index.css", "postcss.config.cjs", "stylelint.config.cjs", "uno.config.cjs"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -5,7 +5,7 @@ import Center from '~/layouts/Center.vue';
 </script>
 
 <template>
-  <Center>
-    <RouterView />
-  </Center>
+	<Center>
+		<RouterView />
+	</Center>
 </template>

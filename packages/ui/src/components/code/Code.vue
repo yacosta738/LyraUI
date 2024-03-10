@@ -1,9 +1,9 @@
 <template>
-  <code class="Code"><slot></slot></code>
+	<code class="Code"><slot></slot></code>
 </template>
 
 <style lang="scss" scoped>
 .Code {
-  @apply px-1.5 py-0.5 h-fit font-mono font-normal inline-block whitespace-nowrap text-gray-700 bg-gray-300 text-sm rounded;
+	@apply inline-block h-fit whitespace-nowrap rounded bg-gray-300 px-1.5 py-0.5 font-mono text-sm font-normal text-gray-700;
 }
 </style>

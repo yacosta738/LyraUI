@@ -7,35 +7,35 @@ const query2 = ref(['spotlight', 'emphasize', 'Accentuate']);
 </script>
 
 <template>
-  <XBreadcrumb :items="[{ text: 'Library' }, { text: 'Feedback' }, { text: 'Highlight' }]" />
+	<XBreadcrumb :items="[{ text: 'Library' }, { text: 'Feedback' }, { text: 'Highlight' }]" />
 
-  <h1 class="text-4xl font-extrabold my-4">Highlight</h1>
+	<h1 class="my-4 text-4xl font-extrabold">Highlight</h1>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4">String</h2>
+	<section class="my-8">
+		<h2 class="my-4 text-3xl font-bold">String</h2>
 
-    <XCard>
-      <XTextField v-model:value="query1" />
+		<XCard>
+			<XTextField v-model:value="query1" />
 
-      <div class="mt-1">
-        <XHighlight :query="[query1]">
-          With the Highlight component, you can spotlight, emphasize and accentuate words.
-        </XHighlight>
-      </div>
-    </XCard>
-  </section>
+			<div class="mt-1">
+				<XHighlight :query="[query1]">
+					With the Highlight component, you can spotlight, emphasize and accentuate words.
+				</XHighlight>
+			</div>
+		</XCard>
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">String</h2>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">String</h2>
 
-    <XCard>
-      <XChipField v-model:value="query2" />
+		<XCard>
+			<XChipField v-model:value="query2" />
 
-      <div class="mt-1">
-        <XHighlight :query="query2">
-          With the Highlight component, you can spotlight, emphasize and accentuate words.
-        </XHighlight>
-      </div>
-    </XCard>
-  </section>
+			<div class="mt-1">
+				<XHighlight :query="query2">
+					With the Highlight component, you can spotlight, emphasize and accentuate words.
+				</XHighlight>
+			</div>
+		</XCard>
+	</section>
 </template>

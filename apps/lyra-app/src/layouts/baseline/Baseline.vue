@@ -15,13 +15,31 @@ const router = useRouter();
 const route = useRoute();
 const localer = useLocaler();
 
-const colorMode = useColorMode({ emitAuto: true });
+const colorMode = useColorMode();
 const textDirection = useTextDirection();
 
 const { state } = useStore();
+export interface UserData {
+  message: string;
+  _id: string;
+  username: string;
+  email: string;
+  fullName: string;
+  status: boolean;
+  otpEnabled: boolean;
+  otpVerified: boolean;
+  createdAt: string;
+  updatedAt: string;
+  role: string;
+  permissions: Permission[];
+}
 
+export interface Permission {
+  resource: string;
+  action: string;
+}
 const flux = reactive({
-  user: {} as any,
+  user: {} as UserData,
   userError: {} as any,
 
   signOut() {
@@ -85,12 +103,12 @@ state.listOfLinks.forEach((link) => {
 });
 
 onMounted(async () => {
-  const response = await request('/auth/user', { method: 'GET' });
+  const response = await request<UserData>('/auth/user', { method: 'GET' });
 
   state.userLoading = false;
 
   if (response.status === 200) {
-    flux.user = response._data;
+    flux.user = response._data as UserData;
   }
 
   if (400 <= response.status && response.status <= 500) {
@@ -135,7 +153,7 @@ function changeLang(lang: string) {
   <div class="h-full">
     <header class="Topbar">
       <div
-        class="i-material-symbols-menu-rounded w-7 h-7 cursor-pointer transition hover:scale-125 xl:hidden"
+        class="i-material-symbols-menu-rounded h-7 w-7 cursor-pointer transition hover:scale-125 xl:hidden"
         @click="flux.navDrawer = true"
       ></div>
 
@@ -169,17 +187,17 @@ function changeLang(lang: string) {
         @click="flux.searchDialog = true"
       />
 
-      <div class="hidden md:flex md:items-center shadow-sm dark:md:bg-slate-800 md:rounded-md">
+      <div class="hidden shadow-sm md:flex md:items-center md:rounded-md dark:md:bg-slate-800">
         <XButton
           variant="text"
           size="small"
-          class="!h-38px !text-slate-400 !rounded-md !border-slate-900/10 !hover:bg-slate-100 !dark:hover:bg-slate-700"
+          class="!h-38px !hover:bg-slate-100 !dark:hover:bg-slate-700 !rounded-md !border-slate-900/10 !text-slate-400"
           @click="flux.searchDialog = true"
         >
-          <div class="i-material-symbols-search-rounded w-5 h-5"></div>
+          <div class="i-material-symbols-search-rounded h-5 w-5"></div>
           <div>Search</div>
 
-          <div class="block ms-2">
+          <div class="ms-2 block">
             <XKeyboard :keys="['command']">K</XKeyboard>
           </div>
         </XButton>
@@ -189,7 +207,7 @@ function changeLang(lang: string) {
 
       <XPopover v-model="menuStatus">
         <div
-          class="text-white bg-primary-600 rounded-full w-38px h-38px flex justify-center items-center cursor-pointer"
+          class="bg-primary-600 w-38px h-38px flex cursor-pointer items-center justify-center rounded-full text-white"
           @click="menuStatus = !menuStatus"
         >
           {{ flux.avatar(flux.user.fullName) }}
@@ -208,13 +226,13 @@ function changeLang(lang: string) {
               <XListbox>
                 <XListbox.Item>
                   <div class="flex items-center gap-2">
-                    <div class="i-material-symbols-account-circle-outline w-5 h-5"></div>
+                    <div class="i-material-symbols-account-circle-outline h-5 w-5"></div>
                     <div>Profile</div>
                   </div>
                 </XListbox.Item>
                 <XListbox.Item>
                   <div class="flex items-center gap-2">
-                    <div class="i-material-symbols-settings-outline-rounded w-5 h-5"></div>
+                    <div class="i-material-symbols-settings-outline-rounded h-5 w-5"></div>
                     <div>Settings</div>
                   </div>
                 </XListbox.Item>
@@ -224,10 +242,10 @@ function changeLang(lang: string) {
 
               <XListbox>
                 <XListbox.Item @click="menu('appearance')">
-                  <div class="flex justify-between items-center">
-                    <div class="flex items-center me-2">
+                  <div class="flex items-center justify-between">
+                    <div class="me-2 flex items-center">
                       <div
-                        class="w-5 h-5 me-2"
+                        class="me-2 h-5 w-5"
                         :class="{
                           'i-material-symbols-light-mode-outline-rounded': colorMode === 'light',
                           'i-material-symbols-dark-mode-outline-rounded': colorMode === 'dark',
@@ -243,13 +261,13 @@ function changeLang(lang: string) {
                       </div>
                     </div>
 
-                    <div class="i-material-symbols-chevron-right-rounded w-5 h-5"></div>
+                    <div class="i-material-symbols-chevron-right-rounded h-5 w-5"></div>
                   </div>
                 </XListbox.Item>
                 <XListbox.Item @click="menu('language')">
-                  <div class="flex justify-between items-center">
-                    <div class="flex items-center me-2">
-                      <div class="i-material-symbols-translate-rounded w-5 h-5 me-2"></div>
+                  <div class="flex items-center justify-between">
+                    <div class="me-2 flex items-center">
+                      <div class="i-material-symbols-translate-rounded me-2 h-5 w-5"></div>
                       <div>
                         Language:
                         {{
@@ -258,7 +276,7 @@ function changeLang(lang: string) {
                       </div>
                     </div>
 
-                    <div class="i-material-symbols-chevron-right-rounded w-5 h-5"></div>
+                    <div class="i-material-symbols-chevron-right-rounded h-5 w-5"></div>
                   </div>
                 </XListbox.Item>
               </XListbox>
@@ -268,7 +286,7 @@ function changeLang(lang: string) {
               <XListbox>
                 <XListbox.Item @click="flux.signOut">
                   <div class="flex items-center gap-2">
-                    <div class="i-material-symbols-logout-rounded w-5 h-5"></div>
+                    <div class="i-material-symbols-logout-rounded h-5 w-5"></div>
                     <div>Sign out</div>
                   </div>
                 </XListbox.Item>
@@ -276,7 +294,7 @@ function changeLang(lang: string) {
             </template>
 
             <template v-if="menuType === 'appearance'">
-              <div class="p-2 flex items-center gap-2">
+              <div class="flex items-center gap-2 p-2">
                 <XButton
                   icon="i-material-symbols-arrow-back-rounded"
                   variant="text"
@@ -287,26 +305,26 @@ function changeLang(lang: string) {
 
               <div class="border dark:border-slate-600"></div>
 
-              <div class="px-4 mt-3 text-sm text-gray-400 dark:text-gray-500">
+              <div class="mt-3 px-4 text-sm text-gray-400 dark:text-gray-500">
                 Setting applies to this browser only
               </div>
 
               <XListbox>
                 <XListbox.Item @click="colorMode = 'light'">
                   <div class="flex items-center gap-2">
-                    <div class="i-material-symbols-light-mode-outline-rounded w-5 h-5"></div>
+                    <div class="i-material-symbols-light-mode-outline-rounded h-5 w-5"></div>
                     <div>Light</div>
                   </div>
                 </XListbox.Item>
                 <XListbox.Item @click="colorMode = 'dark'">
                   <div class="flex items-center gap-2">
-                    <div class="i-material-symbols-dark-mode-outline-rounded w-5 h-5"></div>
+                    <div class="i-material-symbols-dark-mode-outline-rounded h-5 w-5"></div>
                     <div>Dark</div>
                   </div>
                 </XListbox.Item>
                 <XListbox.Item @click="colorMode = 'auto'">
                   <div class="flex items-center gap-2">
-                    <div class="i-material-symbols-desktop-windows-outline-rounded w-5 h-5"></div>
+                    <div class="i-material-symbols-desktop-windows-outline-rounded h-5 w-5"></div>
                     <div>System</div>
                   </div>
                 </XListbox.Item>
@@ -314,7 +332,7 @@ function changeLang(lang: string) {
             </template>
 
             <template v-if="menuType === 'language'">
-              <div class="p-2 flex items-center gap-2">
+              <div class="flex items-center gap-2 p-2">
                 <XButton
                   icon="i-material-symbols-arrow-back-rounded"
                   variant="text"
@@ -333,7 +351,7 @@ function changeLang(lang: string) {
                 >
                   <div class="flex items-center gap-2">
                     <div
-                      class="w-5 h-5"
+                      class="h-5 w-5"
                       :class="{
                         'i-material-symbols-check-small-rounded': lang.value === localer.lang.value,
                       }"
@@ -352,7 +370,7 @@ function changeLang(lang: string) {
       <Navbar />
     </nav>
 
-    <div class="flex flex-col h-full">
+    <div class="flex h-full flex-col">
       <main class="Page">
         <slot></slot>
       </main>
@@ -364,14 +382,15 @@ function changeLang(lang: string) {
   </div>
 
   <XDrawer
+    v-if="flux"
     v-model="flux.navDrawer"
     :placement="textDirection === 'rtl' ? 'right' : 'left'"
-    class="px-2 pt-4 pb-20"
+    class="px-2 pb-20 pt-4"
   >
     <Navbar />
   </XDrawer>
 
-  <XDialog v-model="flux.authDialog" class="!w-100">
+  <XDialog v-if="flux" v-model="flux.authDialog" class="!w-100">
     <div class="text-2xl">{{ flux.userError.error }}</div>
     <div class="my-2">{{ flux.userError.message }}</div>
 
@@ -380,9 +399,9 @@ function changeLang(lang: string) {
     </div>
   </XDialog>
 
-  <XDialog v-model="flux.searchDialog">
+  <XDialog v-if="flux" v-model="flux.searchDialog">
     <XTextField placeholder="Search here..." prepend="i-material-symbols-search-rounded" />
-    <div class="flex justify-center items-center h-66">No recent searches</div>
+    <div class="h-66 flex items-center justify-center">No recent searches</div>
   </XDialog>
 
   <IdleDialog />
@@ -390,28 +409,29 @@ function changeLang(lang: string) {
 
 <style lang="scss" scoped>
 .Topbar {
-  @apply fixed top-0 z-100;
-  @apply flex items-center gap-3 md:gap-4 w-full px-4 md:px-6 py-4;
-  @apply backdrop-blur bg-white/75 dark:bg-slate-900/75 border-b dark:border-slate-700 shadow;
+  @apply z-100 fixed top-0;
+  @apply flex w-full items-center gap-3 px-4 py-4 md:gap-4 md:px-6;
+  @apply border-b bg-white/75 shadow backdrop-blur dark:border-slate-700 dark:bg-slate-900/75;
 }
 
 .Sidebar {
-  @apply fixed start-0 top-18 bottom-0 z-99 overflow-y-auto;
-  @apply w-64 hidden xl:block px-2 pt-4 pb-20;
-  @apply bg-white dark:bg-slate-900 border-e dark:border-slate-700 shadow;
+  @apply top-18 z-99 fixed bottom-0 start-0 overflow-y-auto;
+  @apply hidden w-64 px-2 pb-20 pt-4 xl:block;
+  @apply border-e bg-white shadow dark:border-slate-700 dark:bg-slate-900;
+  scrollbar-width: none;
 }
 
 .Page {
   @apply container flex-1 self-center;
-  @apply pt-22 md:pt-24 lg:pt-26;
+  @apply pt-22 lg:pt-26 md:pt-24;
   @apply ps-4 md:ps-6 lg:ps-8 xl:ps-72;
   @apply pb-4 md:pb-6 lg:pb-8;
   @apply pe-4 md:pe-6 lg:pe-8;
 }
 
 .Footer {
-  @apply flex flex-col flex justify-center md:flex-row p-8 gap-2;
-  @apply bg-slate-50 dark:bg-slate-900 border-t dark:border-slate-700;
+  @apply flex flex flex-col justify-center gap-2 p-8 md:flex-row;
+  @apply border-t bg-slate-50 dark:border-slate-700 dark:bg-slate-900;
   @apply xl:ps-72;
 }
 </style>

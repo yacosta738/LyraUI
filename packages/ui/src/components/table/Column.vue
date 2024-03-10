@@ -1,18 +1,18 @@
 <template>
-  <th class="Column">
-    <slot></slot>
-  </th>
+	<th class="Column">
+		<slot></slot>
+	</th>
 </template>
 
 <style lang="scss" scoped>
 .Column {
-  @apply h-38px;
-  @apply px-4 py-0 text-zinc-600 dark:text-zinc-400 bg-gray-200 dark:bg-gray-700;
-  @apply border border-zinc-100 dark:border-zinc-600 border-l-0 border-r-0;
-  @apply align-middle whitespace-nowrap font-semibold text-left;
+	@apply h-38px;
+	@apply bg-gray-200 px-4 py-0 text-zinc-600 dark:bg-gray-700 dark:text-zinc-400;
+	@apply border border-l-0 border-r-0 border-zinc-100 dark:border-zinc-600;
+	@apply whitespace-nowrap text-left align-middle font-semibold;
 
-  > :deep(div) {
-    @apply inline-flex items-center h-full;
-  }
+	> :deep(div) {
+		@apply inline-flex h-full items-center;
+	}
 }
 </style>

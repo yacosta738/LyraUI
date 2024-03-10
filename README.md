@@ -72,13 +72,13 @@ Biome CLI
 
 ```sh
 # format
-$ pnpm biome format ./app ./ui ./mock ./e2e --write
+$ pnpm run format
 
 # lint
-$ pnpm biome lint ./app ./ui ./mock ./e2e
+$ pnpm run lint
 
 # format, lint & sort
-$ pnpm biome check --apply ./app ./ui ./mock ./e2e
+$ pnpm run check
 ```
 
 ### Check types
@@ -107,7 +107,7 @@ This seed repository provides the following features:
 - [x] [Vue](https://github.com/vuejs/vue) - User Interface Framework
 - [x] [Router](https://github.com/vuejs/vue-router) - Routing
 - [x] [Routes](https://github.com/Vanilla-IceCream/vite-plugin-vue-routes) - File-based Routing
-- [x] [Storer](https://github.com/Vanilla-IceCream/vue-storer) - State Management
+- [x] [Storer](https://pinia.vuejs.org) - State Management
 - [x] [Formor](https://github.com/Vanilla-IceCream/vue-formor) - Form Validation
 - [x] [Valibot](https://github.com/fabian-hiller/valibot) - Schema Validation
 - [x] [Localer](https://github.com/Vanilla-IceCream/vue-localer) - Internationalization and Localization

@@ -4,88 +4,88 @@ import { XBreadcrumb, XCard, XFileInput, XDropzone } from '@lyra/ui';
 import { request } from '@lyra/ui';
 
 const flux = reactive({
-  changeFile(event: Event) {
-    const el = event.target as HTMLInputElement;
-    const file = el?.files?.[0];
-    console.log(file);
-  },
-  async fileUploads(event: Event) {
-    const el = event.target as HTMLInputElement;
-    const file = el?.files?.[0];
+	changeFile(event: Event) {
+		const el = event.target as HTMLInputElement;
+		const file = el?.files?.[0];
+		console.log(file);
+	},
+	async fileUploads(event: Event) {
+		const el = event.target as HTMLInputElement;
+		const file = el?.files?.[0];
 
-    const formData = new FormData();
-    if (file) formData.append('userfile', file);
+		const formData = new FormData();
+		if (file) formData.append('userfile', file);
 
-    await request('/file-uploads', {
-      method: 'POST',
-      body: formData,
-    });
-  },
-  async importData(event: Event) {
-    const el = event.target as HTMLInputElement;
-    const file = el?.files?.[0];
+		await request('/file-uploads', {
+			method: 'POST',
+			body: formData,
+		});
+	},
+	async importData(event: Event) {
+		const el = event.target as HTMLInputElement;
+		const file = el?.files?.[0];
 
-    const formData = new FormData();
-    if (file) formData.append('userfile', file);
+		const formData = new FormData();
+		if (file) formData.append('userfile', file);
 
-    await request('/file-uploads/import-data', {
-      method: 'POST',
-      body: formData,
-    });
-  },
+		await request('/file-uploads/import-data', {
+			method: 'POST',
+			body: formData,
+		});
+	},
 });
 </script>
 
 <template>
-  <XBreadcrumb :items="[{ text: 'Library' }, { text: 'Data Entry' }, { text: 'FileInput' }]" />
+	<XBreadcrumb :items="[{ text: 'Library' }, { text: 'Data Entry' }, { text: 'FileInput' }]" />
 
-  <h1 class="text-4xl font-extrabold my-4">FileInput</h1>
+	<h1 class="my-4 text-4xl font-extrabold">FileInput</h1>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4">Basic</h2>
+	<section class="my-8">
+		<h2 class="my-4 text-3xl font-bold">Basic</h2>
 
-    <XCard>
-      <XFileInput label="Example label" @change="flux.changeFile" />
-    </XCard>
-  </section>
+		<XCard>
+			<XFileInput label="Example label" @change="flux.changeFile" />
+		</XCard>
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Multiple</h2>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Multiple</h2>
 
-    <XCard>
-      <XFileInput label="Example label" multiple />
-    </XCard>
-  </section>
+		<XCard>
+			<XFileInput label="Example label" multiple />
+		</XCard>
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Disabled</h2>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Disabled</h2>
 
-    <XCard>
-      <XFileInput label="Example label" disabled />
-    </XCard>
-  </section>
+		<XCard>
+			<XFileInput label="Example label" disabled />
+		</XCard>
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Upload file to Cloudinary</h2>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Upload file to Cloudinary</h2>
 
-    <XCard>
-      <XFileInput label="Example label" @change="flux.fileUploads" />
-    </XCard>
-  </section>
+		<XCard>
+			<XFileInput label="Example label" @change="flux.fileUploads" />
+		</XCard>
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Import data from Excel</h2>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Import data from Excel</h2>
 
-    <XCard>
-      <XFileInput label="Example label" @change="flux.importData" />
-    </XCard>
-  </section>
+		<XCard>
+			<XFileInput label="Example label" @change="flux.importData" />
+		</XCard>
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Dropzone</h2>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Dropzone</h2>
 
-    <XCard>
-      <XDropzone label="Example label" />
-    </XCard>
-  </section>
+		<XCard>
+			<XDropzone label="Example label" />
+		</XCard>
+	</section>
 </template>

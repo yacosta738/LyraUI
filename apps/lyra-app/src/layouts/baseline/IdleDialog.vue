@@ -8,35 +8,35 @@ const router = useRouter();
 const { idle } = useIdle(30 * 60 * 1000);
 
 const flux = reactive({
-  idleDialog: false,
+	idleDialog: false,
 });
 
 watch(
-  () => idle.value,
-  (val) => {
-    if (val) {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      flux.idleDialog = true;
-    }
-  },
+	() => idle.value,
+	(val) => {
+		if (val) {
+			localStorage.removeItem('accessToken');
+			localStorage.removeItem('refreshToken');
+			flux.idleDialog = true;
+		}
+	}
 );
 
 watch(
-  () => flux.idleDialog,
-  (val) => {
-    if (!val) router.push('/sign-in');
-  },
+	() => flux.idleDialog,
+	(val) => {
+		if (!val) router.push('/sign-in');
+	}
 );
 </script>
 
 <template>
-  <XDialog v-model="flux.idleDialog" class="!w-100">
-    <div class="text-2xl">Idle Time-out</div>
-    <div class="my-2">Please sign-in again.</div>
+	<XDialog v-model="flux.idleDialog" class="!w-100">
+		<div class="text-2xl">Idle Time-out</div>
+		<div class="my-2">Please sign-in again.</div>
 
-    <div class="flex justify-end">
-      <XButton @click="flux.idleDialog = false">Okay, got it</XButton>
-    </div>
-  </XDialog>
+		<div class="flex justify-end">
+			<XButton @click="flux.idleDialog = false">Okay, got it</XButton>
+		</div>
+	</XDialog>
 </template>

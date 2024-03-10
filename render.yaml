@@ -22,7 +22,7 @@ services:
         value: 1; mode=block
       - path: /*
         name: Content-Security-Policy
-        value: "form-action https:"
+        value: 'form-action https:'
       - path: /*
         name: Referrer-Policy
         value: strict-origin-when-cross-origin
@@ -36,4 +36,3 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-

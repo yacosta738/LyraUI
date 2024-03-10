@@ -6,12 +6,12 @@ import Touched from './Touched.vue';
 </script>
 
 <template>
-  <XBreadcrumb
-    :items="[{ text: 'Library' }, { text: 'Data Entry' }, { text: 'Form Validation' }]"
-  />
+	<XBreadcrumb
+		:items="[{ text: 'Library' }, { text: 'Data Entry' }, { text: 'Form Validation' }]"
+	/>
 
-  <h1 class="text-4xl font-extrabold my-4">Form Validation</h1>
+	<h1 class="my-4 text-4xl font-extrabold">Form Validation</h1>
 
-  <Basic />
-  <Touched />
+	<Basic />
+	<Touched />
 </template>

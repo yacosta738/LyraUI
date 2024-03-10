@@ -8,20 +8,20 @@ const control = ref({ rows: 10, page: 1, field: 'id', direction: 'asc' });
 </script>
 
 <template>
-  <section>
-    <h2 class="text-3xl font-bold my-4">No Data</h2>
+	<section>
+		<h2 class="my-4 text-3xl font-bold">No Data</h2>
 
-    <XCard>
-      <XTable
-        v-model:control="control"
-        :static="staticTable"
-        :columns="[
-          { key: 'title', name: 'Title' },
-          { key: 'difficulty', name: 'Difficulty' },
-        ]"
-        :rows="rows"
-        :count="rows?.length"
-      />
-    </XCard>
-  </section>
+		<XCard>
+			<XTable
+				v-model:control="control"
+				:static="staticTable"
+				:columns="[
+					{ key: 'title', name: 'Title' },
+					{ key: 'difficulty', name: 'Difficulty' },
+				]"
+				:rows="rows"
+				:count="rows?.length"
+			/>
+		</XCard>
+	</section>
 </template>

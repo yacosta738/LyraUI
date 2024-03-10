@@ -7,77 +7,77 @@ import TextField from '../text-field/TextField.vue';
 import Button from '../button/Button.vue';
 
 const props = defineProps<{
-  modelValue?: boolean;
-  expected?: string;
-  received?: string;
-  loading?: boolean;
+	modelValue?: boolean;
+	expected?: string;
+	received?: string;
+	loading?: boolean;
 }>();
 
 const emit = defineEmits<{
-  (evt: 'update:modelValue', val: boolean): void;
-  (evt: 'update:expected', val: string): void;
-  (evt: 'delete'): void;
+	(evt: 'update:modelValue', val: boolean): void;
+	(evt: 'update:expected', val: string): void;
+	(evt: 'delete'): void;
 }>();
 
 const localer = useLocaler();
 const locale = useLocale();
 
 const defaultModel = computed({
-  get: () => props.modelValue || false,
-  set: (val) => emit('update:modelValue', val),
+	get: () => props.modelValue || false,
+	set: (val) => emit('update:modelValue', val),
 });
 
 const expectedModel = computed({
-  get: () => props.expected || '',
-  set: (val) => emit('update:expected', val),
+	get: () => props.expected || '',
+	set: (val) => emit('update:expected', val),
 });
 
 const expectedLabel = computed(
-  () =>
-    localer.f(locale.value?.confirmDeletionLabel, { received: props.received }) ||
-    `To confirm deletion, type "${props.received}" in the box below`,
+	() =>
+		localer.f(locale.value?.confirmDeletionLabel, { received: props.received }) ||
+		`To confirm deletion, type "${props.received}" in the box below`
 );
 
 watch(
-  () => defaultModel.value,
-  () => {
-    expectedModel.value = '';
-  },
+	() => defaultModel.value,
+	() => {
+		expectedModel.value = '';
+	}
 );
 </script>
 
 <template>
-  <Dialog
-    v-model="defaultModel"
-    :title="locale.confirmDeletion || 'Confirm Deletion?'"
-    class="!w-150"
-  >
-    <div class="space-y-4">
-      <div>
-        {{
-          locale.confirmDeletionContent || 'Once deleted, the data must be re-created if needed.'
-        }}
-      </div>
+	<Dialog
+		v-model="defaultModel"
+		:title="locale.confirmDeletion || 'Confirm Deletion?'"
+		class="!w-150"
+	>
+		<div class="space-y-4">
+			<div>
+				{{
+					locale.confirmDeletionContent || 'Once deleted, the data must be re-created if needed.'
+				}}
+			</div>
 
-      <TextField v-model:value="expectedModel" :label="expectedLabel" />
-    </div>
+			<TextField v-model:value="expectedModel" :label="expectedLabel" />
+		</div>
 
-    <div class="flex justify-center gap-2 mt-8">
-      <Button
-        prepend="i-material-symbols-undo-rounded"
-        :label="locale.cancel || 'Cancel'"
-        color="secondary"
-        @click="defaultModel = false"
-      />
+		<div class="mt-8 flex justify-center gap-2">
+			<Button
+				prepend="i-material-symbols-undo-rounded"
+				:label="locale.cancel || 'Cancel'"
+				color="secondary"
+				@click="defaultModel = false"
+			/>
 
-      <Button
-        prepend="i-material-symbols-delete-outline-rounded"
-        :label="locale.delete || 'Delete'"
-        color="danger"
-        :disabled="expectedModel !== received"
-        :loading="loading"
-        @click="emit('delete')"
-      />
-    </div>
-  </Dialog>
+			<Button
+				prepend="i-material-symbols-delete-outline-rounded"
+				:label="locale.delete || 'Delete'"
+				color="danger"
+				:disabled="expectedModel !== received"
+				:loading="loading"
+				@click="emit('delete')"
+			/>
+		</div>
+	</Dialog>
 </template>

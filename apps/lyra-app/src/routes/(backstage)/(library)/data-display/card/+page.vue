@@ -3,79 +3,79 @@ import { XBreadcrumb, XCard, XButton } from '@lyra/ui';
 </script>
 
 <template>
-  <XBreadcrumb :items="[{ text: 'Library' }, { text: 'Data Display' }, { text: 'Card' }]" />
+	<XBreadcrumb :items="[{ text: 'Library' }, { text: 'Data Display' }, { text: 'Card' }]" />
 
-  <h1 class="text-4xl font-extrabold my-4">Card</h1>
+	<h1 class="my-4 text-4xl font-extrabold">Card</h1>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4">Basic</h2>
+	<section class="my-8">
+		<h2 class="my-4 text-3xl font-bold">Basic</h2>
 
-    <XCard class="max-w-sm my-4">
-      <template #title>
-        <div>Noteworthy technology acquisitions</div>
-      </template>
+		<XCard class="my-4 max-w-sm">
+			<template #title>
+				<div>Noteworthy technology acquisitions</div>
+			</template>
 
-      <template #subtitle>
-        <div>2021/10/01 ~ 2021/10/31</div>
-      </template>
+			<template #subtitle>
+				<div>2021/10/01 ~ 2021/10/31</div>
+			</template>
 
-      <div>
-        Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-        chronological order.
-      </div>
+			<div>
+				Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
+				chronological order.
+			</div>
 
-      <template #footer>
-        <XButton>Action</XButton>
-      </template>
-    </XCard>
+			<template #footer>
+				<XButton>Action</XButton>
+			</template>
+		</XCard>
 
-    <XCard class="max-w-sm my-4">
-      <template #header>
-        <div class="aspect-16/9 bg-gray-200 rounded-t-lg flex justify-center items-center">
-          aspect-16/9
-        </div>
-      </template>
+		<XCard class="my-4 max-w-sm">
+			<template #header>
+				<div class="aspect-16/9 flex items-center justify-center rounded-t-lg bg-gray-200">
+					aspect-16/9
+				</div>
+			</template>
 
-      <template #title>
-        <div>Noteworthy technology acquisitions</div>
-      </template>
+			<template #title>
+				<div>Noteworthy technology acquisitions</div>
+			</template>
 
-      <template #subtitle>
-        <div>2021/10/01 ~ 2021/10/31</div>
-      </template>
+			<template #subtitle>
+				<div>2021/10/01 ~ 2021/10/31</div>
+			</template>
 
-      <div>
-        Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-        chronological order.
-      </div>
+			<div>
+				Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
+				chronological order.
+			</div>
 
-      <template #footer>
-        <XButton>Action</XButton>
-      </template>
-    </XCard>
+			<template #footer>
+				<XButton>Action</XButton>
+			</template>
+		</XCard>
 
-    <XCard class="max-w-lg flex my-4">
-      <template #header>
-        <div class="w-50 h-full bg-gray-200 rounded-l-lg flex justify-center items-center"></div>
-      </template>
+		<XCard class="my-4 flex max-w-lg">
+			<template #header>
+				<div class="w-50 flex h-full items-center justify-center rounded-l-lg bg-gray-200"></div>
+			</template>
 
-      <template #title>
-        <time class="text-sm text-zinc-400 font-normal">2021/10/01 ~ 2021/10/31</time>
-        <div>Noteworthy technology acquisitions</div>
-      </template>
+			<template #title>
+				<time class="text-sm font-normal text-zinc-400">2021/10/01 ~ 2021/10/31</time>
+				<div>Noteworthy technology acquisitions</div>
+			</template>
 
-      <template #subtitle>
-        <div>Card subtitle</div>
-      </template>
+			<template #subtitle>
+				<div>Card subtitle</div>
+			</template>
 
-      <div>
-        Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
-        chronological order.
-      </div>
+			<div>
+				Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse
+				chronological order.
+			</div>
 
-      <template #footer>
-        <XButton>Action</XButton>
-      </template>
-    </XCard>
-  </section>
+			<template #footer>
+				<XButton>Action</XButton>
+			</template>
+		</XCard>
+	</section>
 </template>

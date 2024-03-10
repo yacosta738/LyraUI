@@ -6,23 +6,23 @@ const year = ref<number>();
 </script>
 
 <template>
-  <XBreadcrumb
-    :items="[
-      { text: 'Library' },
-      { text: 'Data Entry' },
-      { text: 'Pickers' },
-      { text: 'Year Pickers' },
-    ]"
-  />
+	<XBreadcrumb
+		:items="[
+			{ text: 'Library' },
+			{ text: 'Data Entry' },
+			{ text: 'Pickers' },
+			{ text: 'Year Pickers' },
+		]"
+	/>
 
-  <h1 class="text-4xl font-extrabold my-4">YearPicker</h1>
+	<h1 class="my-4 text-4xl font-extrabold">YearPicker</h1>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4">Basic</h2>
+	<section class="my-8">
+		<h2 class="my-4 text-3xl font-bold">Basic</h2>
 
-    <XCard>
-      <XYearPicker v-model:value="year" />
-      <div class="mt-1">{{ year }}</div>
-    </XCard>
-  </section>
+		<XCard>
+			<XYearPicker v-model:value="year" />
+			<div class="mt-1">{{ year }}</div>
+		</XCard>
+	</section>
 </template>
