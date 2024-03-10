@@ -85,7 +85,7 @@ const flux = reactive({
         class="flex justify-center items-center bg-slate-50 dark:bg-slate-700 px-4 py-7 mb-6 rounded"
       >
         <QrcodeImage
-          value="otpauth://totp/Fastify%20Starter:shyam.chen?secret=CANACAIVIRPXM23E&period=30&digits=6&algorithm=SHA1&issuer=Fastify%20Starter"
+          value="otpauth://totp/Fastify%20Starter:yap?secret=CANACAIVIRPXM23E&period=30&digits=6&algorithm=SHA1&issuer=Fastify%20Starter"
           :size="4"
           class="w-50 rounded-md"
         />

@@ -6,9 +6,9 @@ export default async (app: FastifyInstance) => {
       result: [
         {
           _id: '6462f6b1c0ae46c0c9fbca5d',
-          username: 'shyam.chen',
-          email: 'shyam.chen@example.com',
-          fullName: 'Shyam Chen',
+          username: 'yap',
+          email: 'yap@example.com',
+          fullName: 'Yuniel Acosta',
           status: true,
           otpEnabled: false,
           otpVerified: false,

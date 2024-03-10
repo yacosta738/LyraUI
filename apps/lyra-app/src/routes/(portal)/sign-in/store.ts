@@ -12,7 +12,7 @@ export default defineStore('/sign-in', () => {
 
   const state = reactive({
     signInForm: {
-      username: 'shyam.chen',
+      username: 'yap',
       password: '12345678',
     } as SignInForm,
     signInValdn: {} as Record<keyof SignInForm, string>,
@@ -95,7 +95,7 @@ export default defineStore('/sign-in', () => {
   function $reset() {
     // Reset the state to its initial state
     state.signInForm = {
-      username: 'shyam.chen',
+      username: 'yap',
       password: '12345678',
     };
     state.signInValdn = {} as Record<keyof SignInForm, string>;
