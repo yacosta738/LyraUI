@@ -6,5 +6,5 @@ const checked = ref(false);
 </script>
 
 <template>
-  <XSwitch v-model:value="checked">Switch</XSwitch>
+	<XSwitch v-model:value="checked">Switch</XSwitch>
 </template>

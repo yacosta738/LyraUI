@@ -6,19 +6,19 @@ import { useValibotSchema } from 'vue-formor';
 import useStore from './store';
 
 export default () => {
-  const valdnLocale = useValdnLocale();
+	const valdnLocale = useValdnLocale();
 
-  const { state } = useStore();
+	const { state } = useStore();
 
-  const schema = useValibotSchema(
-    computed(() =>
-      object({
-        title: nullish(string([minLength(1, valdnLocale.value.required)]), ''),
-      }),
-    ),
-    toRef(state, 'todoForm'),
-    toRef(state, 'todoValdn'),
-  );
+	const schema = useValibotSchema(
+		computed(() =>
+			object({
+				title: nullish(string([minLength(1, valdnLocale.value.required)]), ''),
+			})
+		),
+		toRef(state, 'todoForm'),
+		toRef(state, 'todoValdn')
+	);
 
-  return schema;
+	return schema;
 };

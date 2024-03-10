@@ -12,31 +12,31 @@ const { language } = useNavigatorLanguage();
 useDark();
 
 watch(
-  language,
-  (val) => {
-    if (val) {
-      const _language = localStorage.getItem('language');
+	language,
+	(val) => {
+		if (val) {
+			const _language = localStorage.getItem('language');
 
-      if (_language) {
-        lang.value = _language;
-        document.documentElement.lang = _language;
-        return;
-      }
+			if (_language) {
+				lang.value = _language;
+				document.documentElement.lang = _language;
+				return;
+			}
 
-      const found = langs.value.find((item) => item.startsWith(val) || val.startsWith(item));
+			const found = langs.value.find((item) => item.startsWith(val) || val.startsWith(item));
 
-      if (found) {
-        lang.value = found;
-        document.documentElement.lang = found;
-        return;
-      }
-    }
-  },
-  { immediate: true },
+			if (found) {
+				lang.value = found;
+				document.documentElement.lang = found;
+				return;
+			}
+		}
+	},
+	{ immediate: true }
 );
 </script>
 
 <template>
-  <RouterView />
-  <XNotification :messages="notification.messages" :timeouts="notification.timeouts" />
+	<RouterView />
+	<XNotification :messages="notification.messages" :timeouts="notification.timeouts" />
 </template>

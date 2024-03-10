@@ -13,69 +13,69 @@ const rows = ref<typeof leetcode>([]);
 const control = ref({ rows: 10, page: 1, field: 'id', direction: 'asc' });
 
 onMounted(() => {
-  response.value = structuredClone(leetcode);
-  rows.value = [...response.value];
+	response.value = structuredClone(leetcode);
+	rows.value = [...response.value];
 });
 
 function reset() {
-  title.value = '';
-  difficulty.value = '';
-  search();
+	title.value = '';
+	difficulty.value = '';
+	search();
 }
 
 function search() {
-  let data = [...response.value];
+	let data = [...response.value];
 
-  if (title.value) {
-    data = data.filter((item) => item.title.toUpperCase().includes(title.value.toUpperCase()));
-  }
+	if (title.value) {
+		data = data.filter((item) => item.title.toUpperCase().includes(title.value.toUpperCase()));
+	}
 
-  if (difficulty.value) {
-    data = data.filter((item) => item.difficulty.includes(difficulty.value));
-  }
+	if (difficulty.value) {
+		data = data.filter((item) => item.difficulty.includes(difficulty.value));
+	}
 
-  rows.value = data;
-  control.value = { rows: 10, page: 1, field: 'id', direction: 'asc' };
+	rows.value = data;
+	control.value = { rows: 10, page: 1, field: 'id', direction: 'asc' };
 }
 </script>
 
 <template>
-  <div>
-    <div class="text-3xl font-bold my-4">Selectable</div>
+	<div>
+		<div class="my-4 text-3xl font-bold">Selectable</div>
 
-    <div class="p-8 bg-white dark:bg-slate-800 rounded-lg space-y-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <XTextField v-model:value="title" />
+		<div class="space-y-8 rounded-lg bg-white p-8 dark:bg-slate-800">
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+				<XTextField v-model:value="title" />
 
-        <XSelect
-          v-model:value="difficulty"
-          :options="[
-            { label: 'Easy', value: 'Easy' },
-            { label: 'Medium', value: 'Medium' },
-            { label: 'Hard', value: 'Hard' },
-          ]"
-        />
+				<XSelect
+					v-model:value="difficulty"
+					:options="[
+						{ label: 'Easy', value: 'Easy' },
+						{ label: 'Medium', value: 'Medium' },
+						{ label: 'Hard', value: 'Hard' },
+					]"
+				/>
 
-        <div class="flex gap-4">
-          <XButton color="secondary" class="flex-1" @click="reset">Reset</XButton>
-          <XButton class="flex-1" @click="search">Search</XButton>
-        </div>
-      </div>
+				<div class="flex gap-4">
+					<XButton color="secondary" class="flex-1" @click="reset">Reset</XButton>
+					<XButton class="flex-1" @click="search">Search</XButton>
+				</div>
+			</div>
 
-      <XTable
-        v-model:value="response"
-        v-model:control="control"
-        selectable
-        :static="staticTable"
-        :columns="[
-          { key: 'title', name: 'Title' },
-          { key: 'difficulty', name: 'Difficulty' },
-        ]"
-        :rows="rows"
-        :count="rows?.length"
-      />
+			<XTable
+				v-model:value="response"
+				v-model:control="control"
+				selectable
+				:static="staticTable"
+				:columns="[
+					{ key: 'title', name: 'Title' },
+					{ key: 'difficulty', name: 'Difficulty' },
+				]"
+				:rows="rows"
+				:count="rows?.length"
+			/>
 
-      <div>{{ response.filter((item: any) => item.checked)?.map((item) => item.id) }}</div>
-    </div>
-  </div>
+			<div>{{ response.filter((item: any) => item.checked)?.map((item) => item.id) }}</div>
+		</div>
+	</div>
 </template>

@@ -3,8 +3,6 @@
   "description": "Lyra CSS config",
   "version": "0.0.1",
   "private": true,
-  "main": "index.ts",
-  "types": "index.ts",
   "type": "module",
   "author": "Yuniel Acosta <www.yunielacosta.com>",
   "license": "MIT",
@@ -27,7 +25,8 @@
     "test": "echo No test specified 😎 && exit 0"
   },
   "homepage": "lyra-nwhm.onrender.com",
-  "dependencies": {
+  "devDependencies": {
+    "@lyra/tsconfig": "workspace:^",
     "@unocss/postcss": "^0.58.5",
     "@unocss/reset": "^0.58.5",
     "postcss": "^8.4.35",

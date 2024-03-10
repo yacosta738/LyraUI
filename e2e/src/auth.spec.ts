@@ -4,7 +4,7 @@ import signIn from 'mock/auth/sign-in/response';
 test('Sign-in', async ({ page }) => {
   await page.goto('/sign-in', { waitUntil: 'networkidle' });
 
-  expect(page.getByText('Sign in to our platform')).toBeVisible();
+  await expect(page.getByText('Sign in to our platform')).toBeVisible();
 
   await page.route('**/api/auth/sign-in', (route) =>
     route.fulfill({

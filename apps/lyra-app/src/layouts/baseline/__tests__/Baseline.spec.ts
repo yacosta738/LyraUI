@@ -1,7 +1,8 @@
 import type { VueWrapper } from '@vue/test-utils';
+import { createTestingPinia } from '@pinia/testing';
 import { mount } from '@vue/test-utils';
 import * as xui from '@lyra/ui';
-import user from 'mock/auth/user/response';
+import { user } from '@lyra/mock-responses';
 import { afterEach, test, vi } from 'vitest';
 
 import localer from '~/plugins/localer';
@@ -22,5 +23,5 @@ test('Baseline', async () => {
     }
   });
 
-  wrapper = mount(Baseline, { global: { plugins: [router, localer] } });
+  wrapper = mount(Baseline, { global: { plugins: [router, localer,  createTestingPinia()] } });
 });

@@ -5,12 +5,12 @@ import { Baseline } from '~/layouts/baseline';
 import auth from '~/middleware/auth';
 
 defineOptions({
-  beforeRouteEnter: auth,
+	beforeRouteEnter: auth,
 });
 </script>
 
 <template>
-  <Baseline>
-    <RouterView />
-  </Baseline>
+	<Baseline>
+		<RouterView />
+	</Baseline>
 </template>

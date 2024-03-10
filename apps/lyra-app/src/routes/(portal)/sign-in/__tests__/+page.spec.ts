@@ -1,8 +1,8 @@
 import type { VueWrapper } from '@vue/test-utils';
 import { mount } from '@vue/test-utils';
+import { createTestingPinia } from '@pinia/testing';
 import * as xui from '@lyra/ui';
-import opt from 'mock/auth/otp/validate/response';
-import signIn from 'mock/auth/sign-in/response';
+import { otp, signIn } from '@lyra/mock-responses';
 
 import localer from '~/plugins/localer';
 import router from '~/plugins/router';
@@ -12,7 +12,7 @@ import Page from '../+page.vue';
 let wrapper: VueWrapper;
 
 beforeEach(() => {
-  wrapper = mount(Page, { global: { plugins: [router, localer] } });
+  wrapper = mount(Page, { global: { plugins: [router, localer, createTestingPinia()] } });
 });
 
 afterEach(() => {
@@ -58,7 +58,7 @@ test('2fa', async () => {
     }
 
     if (url === '/auth/otp/validate') {
-      return { _data: opt.successful, status: 200 };
+      return { _data: otp.successful, status: 200 };
     }
   });
 

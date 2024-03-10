@@ -14,63 +14,63 @@ const codeImport = `import { XMeterGroup } from '@lyra/ui';`;
 </script>
 
 <template>
-  <XBreadcrumb :items="[{ text: 'Library' }, { text: 'Feedback' }, { text: 'MeterGroup' }]" />
+	<XBreadcrumb :items="[{ text: 'Library' }, { text: 'Feedback' }, { text: 'MeterGroup' }]" />
 
-  <h1 class="text-4xl font-extrabold my-4">MeterGroup</h1>
-  <p class="my-4">MeterGroup displays scalar measurements within a known range.</p>
+	<h1 class="my-4 text-4xl font-extrabold">MeterGroup</h1>
+	<p class="my-4">MeterGroup displays scalar measurements within a known range.</p>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4">Import</h2>
-    <XCodeBlock :code="codeImport" language="ts" />
-  </section>
+	<section class="my-8">
+		<h2 class="my-4 text-3xl font-bold">Import</h2>
+		<XCodeBlock :code="codeImport" language="ts" />
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Basic</h2>
-    <p class="my-4">
-      MeterGroup requires a <XCode>value</XCode> as the data to display where each item in the
-      collection should be a type of <XCode>MeterItem</XCode>.
-    </p>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Basic</h2>
+		<p class="my-4">
+			MeterGroup requires a <XCode>value</XCode> as the data to display where each item in the
+			collection should be a type of <XCode>MeterItem</XCode>.
+		</p>
 
-    <XCard>
-      <Basic />
-    </XCard>
+		<XCard>
+			<Basic />
+		</XCard>
 
-    <XCodeBlock :code="BasicCode" language="html" />
-  </section>
+		<XCodeBlock :code="BasicCode" language="html" />
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Multiple</h2>
-    <p class="my-4">Adding more items to the array displays the meters in a group.</p>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Multiple</h2>
+		<p class="my-4">Adding more items to the array displays the meters in a group.</p>
 
-    <XCard>
-      <Multiple />
-    </XCard>
+		<XCard>
+			<Multiple />
+		</XCard>
 
-    <XCodeBlock :code="MultipleCode" language="html" />
-  </section>
+		<XCodeBlock :code="MultipleCode" language="html" />
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Icon</h2>
-    <p class="my-4">Icons can be displayed next to the labels instead of the default marker.</p>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Icon</h2>
+		<p class="my-4">Icons can be displayed next to the labels instead of the default marker.</p>
 
-    <XCard>
-      <Icon />
-    </XCard>
+		<XCard>
+			<Icon />
+		</XCard>
 
-    <XCodeBlock :code="IconCode" language="html" />
-  </section>
+		<XCodeBlock :code="IconCode" language="html" />
+	</section>
 
-  <section class="my-8">
-    <h2 class="text-3xl font-bold my-4 pt-6">Min & Max</h2>
-    <p class="my-4">
-      Boundaries are configured with the <XCode>min</XCode> and <XCode>max</XCode> values whose
-      defaults are 0 and 100 respectively.
-    </p>
+	<section class="my-8">
+		<h2 class="my-4 pt-6 text-3xl font-bold">Min & Max</h2>
+		<p class="my-4">
+			Boundaries are configured with the <XCode>min</XCode> and <XCode>max</XCode> values whose
+			defaults are 0 and 100 respectively.
+		</p>
 
-    <XCard>
-      <MinMax />
-    </XCard>
+		<XCard>
+			<MinMax />
+		</XCard>
 
-    <XCodeBlock :code="MinMaxCode" language="html" />
-  </section>
+		<XCodeBlock :code="MinMaxCode" language="html" />
+	</section>
 </template>

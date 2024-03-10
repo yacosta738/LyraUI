@@ -11,11 +11,11 @@ const colorMode = useColorMode();
 </script>
 
 <template>
-  <EChart v-bind="$attrs" :theme="colorMode" autoresize class="Chart" />
+	<EChart v-bind="$attrs" :theme="colorMode" autoresize class="Chart" />
 </template>
 
 <style lang="scss" scoped>
 .Chart :deep(svg > rect) {
-  @apply !fill-transparent;
+	@apply !fill-transparent;
 }
 </style>

@@ -6,5 +6,5 @@ const value = ref([{ label: 'Space used', value: 15 }]);
 </script>
 
 <template>
-  <XMeterGroup :value="value" />
+	<XMeterGroup :value="value" />
 </template>
