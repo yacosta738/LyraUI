@@ -29,7 +29,7 @@
     "check": "vue-tsc --noEmit",
     "build": "run-p build:vite build:types",
     "clean": "rm -rf dist",
-    "test": "vitest --dir src --run --coverage",
+    "test:unit": "vitest --coverage --run",
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
@@ -83,7 +83,7 @@
   "devDependencies": {
     "@unocss/postcss": "^0.58.5",
     "@unocss/reset": "^0.58.5",
-    "@iconify/json": "^2.2.190",
+    "@iconify/json": "^2.2.191",
     "@lyra/config": "workspace:^",
     "@lyra/tsconfig": "workspace:^",
     "@types/lodash": "^4.14.202",

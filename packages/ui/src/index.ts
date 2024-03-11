@@ -1,5 +1,4 @@
 import './style.css';
-import 'uno.css';
 export { default as XAccordion } from './components/accordion';
 export { default as XAlert } from './components/alert/Alert.vue';
 export { default as XAutocomplete } from './components/autocomplete/Autocomplete.vue';

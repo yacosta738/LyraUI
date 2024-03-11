@@ -9,7 +9,6 @@ export const sharedViteConfig = (dirname) => ({
     },
     mainFields: ["module"]
   },
-  // @ts-ignore
   test: {
     globals: true,
     environment: "happy-dom"
