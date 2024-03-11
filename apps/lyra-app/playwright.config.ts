@@ -2,7 +2,6 @@ import { defineConfig } from "@playwright/test";
 
 const url = "http://localhost:4173";
 export default defineConfig({
-  testDir: "tests/e2e",
   testMatch: ["**/*.spec.e2e.ts"],
   use: {
     baseURL: url

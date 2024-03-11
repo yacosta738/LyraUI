@@ -197,7 +197,7 @@ The structure follows the LIFT Guidelines.
 ├── e2e
 │   ├── src
 │   ├── package.json
-│   ├── playwright.config.ts
+│   ├── playwright.config.shared.mjs
 │   └── tsconfig.json
 ├── mock
 │   ├── src
