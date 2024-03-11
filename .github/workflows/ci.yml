@@ -12,17 +12,25 @@ jobs:
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
-      - name: Build the Docker image
-        run: docker compose up --build --detach ci
-      - name: pnpm build
-        run: docker compose exec --no-TTY ci pnpm build
-      - name: pnpm preview
-        run: docker compose exec --detach --no-TTY ci pnpm preview
-      - name: pnpm check
-        run: docker compose exec --no-TTY ci pnpm check
-      - name: pnpm test
-        run: docker compose exec --no-TTY ci pnpm test
-      - name: pnpm e2e
-        run: docker compose exec --no-TTY ci pnpm e2e
-      - name: Trigger deployment
-        run: curl -k ${{ secrets.DEPLOY_HOOK }}
+      - name: Install Tools & Dependencies
+        uses: ./.github/actions/install/node
+      - name: Build
+        run: pnpm build
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: 🧪 Run Tests
+        run: pnpm run test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: yacosta738/LyraUI
+          files: apps/*/coverage/junit-report.xml
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)

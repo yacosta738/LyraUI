@@ -1,13 +1,13 @@
 /** @type {import('vite').UserConfig} */
 import Vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
-import envify from 'process-envify';
 import unocss from 'unocss/vite';
-import { defineConfig } from 'vite';
+import { defineConfig, mergeConfig } from "vite";
 import { resolve } from 'path';
-
-// https://vitejs.dev/config/
-export default defineConfig({
+import { sharedViteConfig } from "@lyra/config/vite.config.shared";
+export default mergeConfig(
+  sharedViteConfig(__dirname),
+  defineConfig({
 	build: {
 		cssCodeSplit: true,
 		target: 'esnext',
@@ -26,14 +26,5 @@ export default defineConfig({
 			},
 		},
 	},
-	define: envify({}),
 	plugins: [Vue(), dts(), unocss({})],
-	resolve: {
-		mainFields: ['module'],
-	},
-	// @ts-ignore
-	test: {
-		globals: true,
-		environment: 'happy-dom',
-	},
-});
+}));

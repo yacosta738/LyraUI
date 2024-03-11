@@ -1,5 +1,5 @@
 {
-  "name": "@lyra/css-config",
+  "name": "@lyra/config",
   "description": "Lyra CSS config",
   "version": "0.0.1",
   "private": true,
