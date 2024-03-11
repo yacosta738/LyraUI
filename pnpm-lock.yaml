@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@types/bun':
+        specifier: latest
+        version: 1.0.8
       '@types/eslint':
         specifier: ^8.56.5
         version: 8.56.5
@@ -50,6 +53,9 @@ importers:
       eslint-plugin-vue:
         specifier: ^9.22.0
         version: 9.22.0(eslint@8.57.0)
+      happy-dom:
+        specifier: ^13.7.3
+        version: 13.7.3
       npm-run-all2:
         specifier: ^6.1.2
         version: 6.1.2
@@ -65,6 +71,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ~0.5.12
         version: 0.5.12(prettier-plugin-astro@0.13.0)(prettier@3.2.5)
+      process-envify:
+        specifier: ^2.0.0
+        version: 2.0.0
       stylelint:
         specifier: ^16.2.1
         version: 16.2.1(typescript@5.4.2)
@@ -74,6 +83,12 @@ importers:
       unocss:
         specifier: ^0.58.5
         version: 0.58.5(postcss@8.4.35)(vite@5.1.5)
+      vite:
+        specifier: ^5.1.5
+        version: 5.1.5(@types/node@20.11.25)(sass@1.71.1)
+      vitest:
+        specifier: ^1.3.1
+        version: 1.3.1(@types/node@20.11.25)(happy-dom@13.7.3)(sass@1.71.1)
 
   apps/lyra-app:
     dependencies:
@@ -133,11 +148,11 @@ importers:
         version: 4.1.0(vue@3.4.21)
     devDependencies:
       '@iconify/json':
-        specifier: ^2.2.190
-        version: 2.2.190
-      '@lyra/css-config':
+        specifier: ^2.2.191
+        version: 2.2.191
+      '@lyra/config':
         specifier: workspace:^
-        version: link:../../packages/css-config
+        version: link:../../config
       '@lyra/mock-responses':
         specifier: workspace:^
         version: link:../../packages/mock-responses
@@ -147,6 +162,9 @@ importers:
       '@pinia/testing':
         specifier: ^0.1.3
         version: 0.1.3(pinia@2.1.7)(vue@3.4.21)
+      '@playwright/test':
+        specifier: ^1.42.1
+        version: 1.42.1
       '@types/lodash':
         specifier: ^4.14.202
         version: 4.14.202
@@ -159,12 +177,6 @@ importers:
       '@vue/test-utils':
         specifier: ^2.4.4
         version: 2.4.4(vue@3.4.21)
-      happy-dom:
-        specifier: ^13.7.3
-        version: 13.7.3
-      process-envify:
-        specifier: ^2.0.0
-        version: 2.0.0
       sass:
         specifier: ^1.71.1
         version: 1.71.1
@@ -177,73 +189,21 @@ importers:
       unocss:
         specifier: ^0.58.5
         version: 0.58.5(postcss@8.4.35)(vite@5.1.5)
-      vite:
-        specifier: ^5.1.5
-        version: 5.1.5(@types/node@20.11.25)(sass@1.71.1)
       vite-plugin-vue-routes:
         specifier: ^1.1.0
         version: 1.1.0
-      vitest:
-        specifier: ^1.3.1
-        version: 1.3.1(@types/node@20.11.25)(happy-dom@13.7.3)(sass@1.71.1)
       vue-tsc:
         specifier: ^2.0.6
         version: 2.0.6(typescript@5.4.2)
 
-  e2e:
-    devDependencies:
-      '@lyra/tsconfig':
-        specifier: workspace:^
-        version: link:../packages/tsconfig
-      '@playwright/test':
-        specifier: ^1.42.1
-        version: 1.42.1
-      '@types/node':
-        specifier: ^20.11.25
-        version: 20.11.25
-
-  mock:
-    dependencies:
-      '@fastify/multipart':
-        specifier: ^8.1.0
-        version: 8.1.0
-      '@fastify/one-line-logger':
-        specifier: ^1.2.0
-        version: 1.2.0
-      fastify:
-        specifier: ^4.26.2
-        version: 4.26.2
-      fastify-plugin:
-        specifier: ^4.5.1
-        version: 4.5.1
-    devDependencies:
-      '@lyra/mock-responses':
-        specifier: workspace:^
-        version: link:../packages/mock-responses
-      '@lyra/tsconfig':
-        specifier: workspace:^
-        version: link:../packages/tsconfig
-      process-envify:
-        specifier: ^2.0.0
-        version: 2.0.0
-      vite:
-        specifier: ^5.1.5
-        version: 5.1.5(@types/node@20.11.25)(sass@1.71.1)
-      vite-plugin-fastify:
-        specifier: ^1.2.5
-        version: 1.2.5
-      vite-plugin-fastify-routes:
-        specifier: ^1.1.1
-        version: 1.1.1
-
-  packages/css-config:
+  config:
     devDependencies:
       '@julr/unocss-preset-flowbite':
         specifier: ^0.0.2
         version: 0.0.2(unocss@0.58.5)
       '@lyra/tsconfig':
         specifier: workspace:^
-        version: link:../tsconfig
+        version: link:../packages/tsconfig
       '@unocss/postcss':
         specifier: ^0.58.5
         version: 0.58.5(postcss@8.4.35)
@@ -272,6 +232,40 @@ importers:
         specifier: ^0.58.5
         version: 0.58.5(postcss@8.4.35)(vite@5.1.5)
 
+  mock:
+    dependencies:
+      '@fastify/multipart':
+        specifier: ^8.1.0
+        version: 8.1.0
+      '@fastify/one-line-logger':
+        specifier: ^1.2.0
+        version: 1.2.0
+      fastify:
+        specifier: ^4.26.2
+        version: 4.26.2
+      fastify-plugin:
+        specifier: ^4.5.1
+        version: 4.5.1
+    devDependencies:
+      '@lyra/config':
+        specifier: workspace:^
+        version: link:../config
+      '@lyra/mock-responses':
+        specifier: workspace:^
+        version: link:../packages/mock-responses
+      '@lyra/tsconfig':
+        specifier: workspace:^
+        version: link:../packages/tsconfig
+      vite:
+        specifier: ^5.1.5
+        version: 5.1.5(@types/node@20.11.25)(sass@1.71.1)
+      vite-plugin-fastify:
+        specifier: ^1.2.5
+        version: 1.2.5
+      vite-plugin-fastify-routes:
+        specifier: ^1.1.1
+        version: 1.1.1
+
   packages/mock-responses:
     dependencies:
       vue:
@@ -295,7 +289,7 @@ importers:
         version: 3.7.3(@types/node@20.11.25)(typescript@5.4.2)(vite@5.1.5)
       vitest:
         specifier: ^1.3.1
-        version: 1.3.1(@types/node@20.11.25)(happy-dom@13.7.1)(sass@1.71.1)
+        version: 1.3.1(@types/node@20.11.25)(happy-dom@13.7.3)(sass@1.71.1)
 
   packages/tsconfig: {}
 
@@ -431,9 +425,9 @@ importers:
       '@iconify/json':
         specifier: ^2.2.190
         version: 2.2.190
-      '@lyra/css-config':
+      '@lyra/config':
         specifier: workspace:^
-        version: link:../css-config
+        version: link:../../config
       '@lyra/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
@@ -452,12 +446,6 @@ importers:
       '@vue/test-utils':
         specifier: ^2.4.4
         version: 2.4.4(vue@3.4.21)
-      happy-dom:
-        specifier: ^13.7.1
-        version: 13.7.1
-      process-envify:
-        specifier: ^2.0.0
-        version: 2.0.0
       sass:
         specifier: ^1.71.1
         version: 1.71.1
@@ -473,15 +461,9 @@ importers:
       unocss:
         specifier: ^0.58.5
         version: 0.58.5(postcss@8.4.35)(vite@5.1.5)
-      vite:
-        specifier: ^5.1.5
-        version: 5.1.5(@types/node@20.11.25)(sass@1.71.1)
       vite-plugin-dts:
         specifier: ^3.7.3
         version: 3.7.3(@types/node@20.11.25)(typescript@5.4.2)(vite@5.1.5)
-      vitest:
-        specifier: ^1.3.1
-        version: 1.3.1(@types/node@20.11.25)(happy-dom@13.7.1)(sass@1.71.1)
       vue-tsc:
         specifier: ^2.0.6
         version: 2.0.6(typescript@5.4.2)
@@ -1233,6 +1215,13 @@ packages:
       pathe: 1.1.2
     dev: true
 
+  /@iconify/json@2.2.191:
+    resolution: {integrity: sha512-s6gEvYgYCKce6qw6SXyLz7ChVKzhbCPiIsv3Fq/VLpYeYbU0ipFOeErIJP0dQwqTYydr9cxTvR6rPnHu6Sf3Fg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 1.1.2
+    dev: true
+
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
     dev: true
@@ -1896,6 +1885,12 @@ packages:
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
     dev: true
 
+  /@types/bun@1.0.8:
+    resolution: {integrity: sha512-E6UWZuN4ymAxzUBWVIGDHJ3Zey7I8cMzDZ+cB1BqhZsmd1uPb9iAQzpWMruY1mKzsuD3R+dZPoBkZz8QL1KhSA==}
+    dependencies:
+      bun-types: 1.0.29
+    dev: true
+
   /@types/eslint@8.56.5:
     resolution: {integrity: sha512-u5/YPJHo1tvkSF2CE0USEkxon82Z5DBy2xR+qfyYNszpX9qcs4sT6uq2kBbj4BXY1+DBGDPnrhMZV3pKWGNukw==}
     dependencies:
@@ -1982,6 +1977,12 @@ packages:
   /@types/web-bluetooth@0.0.20:
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
     dev: false
+
+  /@types/ws@8.5.10:
+    resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}
+    dependencies:
+      '@types/node': 20.11.25
+    dev: true
 
   /@typescript-eslint/eslint-plugin@7.1.1(@typescript-eslint/parser@7.1.1)(eslint@8.57.0)(typescript@5.4.2):
     resolution: {integrity: sha512-zioDz623d0RHNhvx0eesUmGfIjzrk18nSBC8xewepKXbBvN/7c1qImV7Hg8TI1URTxKax7/zxfxj3Uph8Chcuw==}
@@ -3184,6 +3185,13 @@ packages:
     resolution: {integrity: sha512-9q/rDEGSb/Qsvv2qvzIzdluL5k7AaJOTrw23z9reQthrbF7is4CtlT0DXyO1oei2DCp4uojjzQ7igaSHp1kAEQ==}
     engines: {node: '>=0.2.0'}
     dev: false
+
+  /bun-types@1.0.29:
+    resolution: {integrity: sha512-Z+U1ORr/2UCwxelIZxE83pyPLclviYL9UewQCNEUmGeLObY8ao+3WF3D8N1+NMv2+S+hUWsdBJam+4GoPEz35g==}
+    dependencies:
+      '@types/node': 20.11.25
+      '@types/ws': 8.5.10
+    dev: true
 
   /cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
@@ -4830,15 +4838,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       duplexer: 0.1.2
-    dev: true
-
-  /happy-dom@13.7.1:
-    resolution: {integrity: sha512-uQgxSTqQY4lMVIhV/W6GWYOT6h7Z6CNlsa+SyvAcOy311spU3zPDNAMzayJky9q4xqfEQf3cQj8yDZngiYUEDA==}
-    engines: {node: '>=16.0.0'}
-    dependencies:
-      entities: 4.5.0
-      webidl-conversions: 7.0.0
-      whatwg-mimetype: 3.0.0
     dev: true
 
   /happy-dom@13.7.3:
@@ -8916,63 +8915,6 @@ packages:
       sass: 1.71.1
     optionalDependencies:
       fsevents: 2.3.3
-    dev: true
-
-  /vitest@1.3.1(@types/node@20.11.25)(happy-dom@13.7.1)(sass@1.71.1):
-    resolution: {integrity: sha512-/1QJqXs8YbCrfv/GPQ05wAZf2eakUPLPa18vkJAKE7RXOKfVHqMZZ1WlTjiwl6Gcn65M5vpNUB6EFLnEdRdEXQ==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@edge-runtime/vm': '*'
-      '@types/node': ^18.0.0 || >=20.0.0
-      '@vitest/browser': 1.3.1
-      '@vitest/ui': 1.3.1
-      happy-dom: '*'
-      jsdom: '*'
-    peerDependenciesMeta:
-      '@edge-runtime/vm':
-        optional: true
-      '@types/node':
-        optional: true
-      '@vitest/browser':
-        optional: true
-      '@vitest/ui':
-        optional: true
-      happy-dom:
-        optional: true
-      jsdom:
-        optional: true
-    dependencies:
-      '@types/node': 20.11.25
-      '@vitest/expect': 1.3.1
-      '@vitest/runner': 1.3.1
-      '@vitest/snapshot': 1.3.1
-      '@vitest/spy': 1.3.1
-      '@vitest/utils': 1.3.1
-      acorn-walk: 8.3.2
-      chai: 4.4.1
-      debug: 4.3.4
-      execa: 8.0.1
-      happy-dom: 13.7.1
-      local-pkg: 0.5.0
-      magic-string: 0.30.7
-      pathe: 1.1.2
-      picocolors: 1.0.0
-      std-env: 3.7.0
-      strip-literal: 2.0.0
-      tinybench: 2.6.0
-      tinypool: 0.8.2
-      vite: 5.1.5(@types/node@20.11.25)(sass@1.71.1)
-      vite-node: 1.3.1(@types/node@20.11.25)(sass@1.71.1)
-      why-is-node-running: 2.2.2
-    transitivePeerDependencies:
-      - less
-      - lightningcss
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
     dev: true
 
   /vitest@1.3.1(@types/node@20.11.25)(happy-dom@13.7.3)(sass@1.71.1):

@@ -1,1 +1,1 @@
-module.exports = require('@lyra/css-config/uno.config.cjs');
+module.exports = require('@lyra/config/uno.config.cjs');
