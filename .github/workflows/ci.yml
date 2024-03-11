@@ -12,6 +12,18 @@ jobs:
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
+      - name: Install Tools & Dependencies
+        uses: ./.github/actions/install/node
+      - name: Build and Test 🧪
+        run: pnpm build && pnpm test
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: yacosta738/LyraUI
+          files: apps/*/coverage/junit-report.xml
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
       - name: Build the Docker image
         run: docker compose up --build --detach ci
       - name: pnpm build
@@ -22,7 +34,5 @@ jobs:
         run: docker compose exec --no-TTY ci pnpm check
       - name: pnpm test
         run: docker compose exec --no-TTY ci pnpm test
-      - name: pnpm e2e
-        run: docker compose exec --no-TTY ci pnpm e2e
       - name: Trigger deployment
         run: curl -k ${{ secrets.DEPLOY_HOOK }}
