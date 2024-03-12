@@ -5,14 +5,13 @@ import { useLocaler, useLocale } from 'vue-localer';
 
 import type staticTable from '../../utilities/static-table/staticTable';
 import Spinner from '../spinner/Spinner.vue';
-import Button from '../button/Button.vue';
-import Select from '../select/Select.vue';
 import Checkbox from '../checkbox/Checkbox.vue';
 
 import type { ColumnItem, Control } from './types';
 import Column from './Column.vue';
 import Row from './Row.vue';
 import Cell from './Cell.vue';
+import TableControl from './TableControl.vue';
 
 const props = defineProps<{
 	value?: T[];
@@ -384,43 +383,16 @@ watch(
 			</table>
 		</div>
 
-		<div
-			v-if="typeof countRef === 'number'"
-			class="flex flex-col items-center justify-end gap-4 p-4 text-sm md:flex-row"
-		>
-			<div class="Table-RowsPerPage">
-				{{ locale.rowsPerPage || 'Rows per page:' }}
-				<div class="ml-2 w-auto">
-					<Select
-						v-model:value="flux.rowsPerPage"
-						:options="flux.rowsPerPageOptions"
-						:disabled="loading"
-						class="!border-transparent"
-					/>
-				</div>
-			</div>
-
-			<div class="flex items-center">{{ paginationInfo }}</div>
-
-			<div class="flex gap-4">
-				<Button
-					prepend="i-material-symbols-chevron-left-rounded"
-					:label="locale.previousPage || 'Previous'"
-					variant="text"
-					color="secondary"
-					:disabled="loading"
-					@click="flux.previousPage"
-				/>
-				<Button
-					:label="locale.nextPage || 'Next'"
-					append="i-material-symbols-chevron-right-rounded"
-					variant="text"
-					color="secondary"
-					:disabled="loading"
-					@click="flux.nextPage"
-				/>
-			</div>
-		</div>
+    <TableControl
+      :count="countRef"
+      :rowsPerPage="flux.rowsPerPage"
+      :rowsPerPageOptions="flux.rowsPerPageOptions"
+      :loading="loading"
+      :paginationInfo="paginationInfo"
+      @previousPage="flux.previousPage"
+      @nextPage="flux.nextPage"
+      @updateRowsPerPage="flux.rowsPerPage = $event"
+    />
 	</div>
 </template>
 
@@ -431,10 +403,6 @@ watch(
 
 .Table-Element {
 	@apply w-full border-collapse;
-}
-
-.Table-RowsPerPage {
-	@apply flex items-center;
 }
 
 .sticky-tr:hover {
