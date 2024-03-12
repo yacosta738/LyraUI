@@ -1,7 +1,11 @@
 import { mount } from "@vue/test-utils";
 import Table from "../Table.vue";
 import { createLocaler } from "vue-localer";
-
+type User = {
+  id: number,
+  name: string,
+  age: number
+}
 const localer = createLocaler({
   fallbackLocale: "en-US",
   messages: {
@@ -13,7 +17,7 @@ const localer = createLocaler({
     }
   }
 });
-const data = [
+const data: User[] = [
   { id: 1, name: "John", age: 20 },
   { id: 2, name: "Jane", age: 21 },
   { id: 3, name: "Doe", age: 22 }
@@ -21,7 +25,7 @@ const data = [
 const control = { rows: 10, page: 1, field: "id", direction: "asc" };
 describe("Table Component", () => {
   it("emits update:control event when controlModel is set", async () => {
-    const wrapper = mount(Table, {
+    const wrapper = mount<typeof Table<User>>(Table, {
       props: {
         columns: [
           { key: "name", name: "Name" },
@@ -29,20 +33,21 @@ describe("Table Component", () => {
         ],
         rows: data,
         count: data.length,
-        control
+        control,
       },
       global: {
         plugins: [localer]
       }
     });
     await wrapper.vm.$nextTick();
+    // @ts-ignore
     wrapper.vm.controlModel = { rows: 20, page: 2, field: "name", direction: "desc" };
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted()).toHaveProperty("update:control");
   });
 
   it("does not emit update:control event when controlModel is set to current value", async () => {
-    const wrapper = mount(Table, {
+    const wrapper = mount<typeof Table<User>>(Table, {
       props: {
         columns: [
           { key: "name", name: "Name" },
@@ -62,7 +67,7 @@ describe("Table Component", () => {
   });
 
   it("emits update:control event with different controlModel value", async () => {
-    const wrapper = mount(Table, {
+    const wrapper = mount<typeof Table<User>>(Table, {
       props: {
         columns: [
           { key: "name", name: "Name" },
@@ -77,13 +82,14 @@ describe("Table Component", () => {
       }
     });
     await wrapper.vm.$nextTick();
+    // @ts-ignore
     wrapper.vm.controlModel = { rows: 30, page: 3, field: "age", direction: "asc" };
     await wrapper.vm.$nextTick();
     expect(wrapper.emitted()).toHaveProperty("update:control");
   });
 
   it("sorts rows when sort method is called", async () => {
-    const wrapper = mount(Table, {
+    const wrapper = mount<typeof Table<User>>(Table, {
       props: {
         columns: [
           { key: "name", name: "Name", sortable: true },
@@ -116,7 +122,7 @@ describe("Table Component", () => {
   });
 
   it("selects all rows when selectAll is triggered", async () => {
-  const wrapper = mount(Table, {
+  const wrapper = mount<typeof Table<User>>(Table, {
     props: {
       columns: [
         { key: "name", name: "Name" },
@@ -132,13 +138,15 @@ describe("Table Component", () => {
     }
   });
   await wrapper.vm.$nextTick();
+    // @ts-ignore
   wrapper.vm.flux.selecteAll = true;
   await wrapper.vm.$nextTick();
+    // @ts-ignore
   expect(wrapper.vm.flux.rows.every(row => row.checked)).toBe(true);
 });
 
 it("deselects all rows when selectAll is triggered again", async () => {
-  const wrapper = mount(Table, {
+  const wrapper = mount<typeof Table<User>>(Table, {
     props: {
       columns: [
         { key: "name", name: "Name" },
@@ -154,15 +162,18 @@ it("deselects all rows when selectAll is triggered again", async () => {
     }
   });
   await wrapper.vm.$nextTick();
+  // @ts-ignore
   wrapper.vm.flux.selecteAll = true;
   await wrapper.vm.$nextTick();
+  // @ts-ignore
   wrapper.vm.flux.selecteAll = false;
   await wrapper.vm.$nextTick();
+  // @ts-ignore
   expect(wrapper.vm.flux.rows.every(row => !row.checked)).toBe(true);
 });
 
 it("emits update:selected event when a row is selected", async () => {
-  const wrapper = mount(Table, {
+  const wrapper = mount<typeof Table<User>>(Table, {
     props: {
       columns: [
         { key: "name", name: "Name" },
@@ -178,6 +189,7 @@ it("emits update:selected event when a row is selected", async () => {
     }
   });
   await wrapper.vm.$nextTick();
+  // @ts-ignore
   wrapper.vm.flux.rows[0].checked = true;
   await wrapper.vm.$nextTick();
   expect(wrapper.emitted()).toHaveProperty("update:selected");
