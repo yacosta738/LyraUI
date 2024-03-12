@@ -8,9 +8,9 @@
     "preview": "pnpm --recursive --parallel --stream run preview",
     "check": "echo ✔︎ Checking frontend && pnpm --recursive --parallel --stream run lint && pnpm --recursive --stream run check",
     "format": "echo 🖌️ Formatting frontend && prettier --write . --plugin=prettier-plugin-astro",
-    "lint": "echo 🚨 Linting frontend && npm-run-all --parallel lint:eslint lint:stylelint",
+    "lint": "echo 🚨 Linting frontend && run-p lint:eslint lint:stylelint",
     "lint:eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.astro,.vue --ignore-path .gitignore .",
-    "lint:stylelint": "stylelint --fix \"**/*.{css,scss,sass}\" --allow-empty-input --config packages/config/stylelint.config.cjs",
+    "lint:stylelint": "stylelint --fix \"**/*.{css,scss,sass}\" --allow-empty-input --config config/stylelint.config.cjs",
     "test": "pnpm --recursive --parallel --stream run test"
   },
   "devDependencies": {

@@ -1,4 +1,10 @@
-body {
-	scrollbar-color: blue lightblue;
-	scrollbar-width: thin;
+.light{
+  scrollbar-color: lightcyan lightslategrey;
+  scrollbar-width: thin;
 }
+
+.dark{
+  scrollbar-color: #1E293B lightblue;
+  scrollbar-width: thin;
+}
+

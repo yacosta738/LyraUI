@@ -383,16 +383,16 @@ watch(
 			</table>
 		</div>
 
-    <TableControl
-      :count="countRef"
-      :rowsPerPage="flux.rowsPerPage"
-      :rowsPerPageOptions="flux.rowsPerPageOptions"
-      :loading="loading"
-      :paginationInfo="paginationInfo"
-      @previousPage="flux.previousPage"
-      @nextPage="flux.nextPage"
-      @updateRowsPerPage="flux.rowsPerPage = $event"
-    />
+		<TableControl
+      :current-page="flux.currentPage"
+			:rowsPerPage="flux.rowsPerPage"
+			:rowsPerPageOptions="flux.rowsPerPageOptions"
+			:loading="loading || false"
+			:paginationInfo="paginationInfo"
+			@previousPage="flux.previousPage"
+			@nextPage="flux.nextPage"
+			@updateRowsPerPage="flux.rowsPerPage = $event"
+		/>
 	</div>
 </template>
 

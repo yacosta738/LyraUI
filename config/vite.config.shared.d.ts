@@ -1,3 +1,3 @@
-import { UserConfig } from "vite";
+import { UserConfig } from 'vite';
 
-declare function sharedViteConfig(dirname: string): UserConfig | Promise<UserConfig>
+declare function sharedViteConfig(dirname: string): UserConfig | Promise<UserConfig>;
