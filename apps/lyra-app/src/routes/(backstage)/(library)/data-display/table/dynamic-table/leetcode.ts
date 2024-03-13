@@ -1,6 +1,12 @@
 import { staticTable } from '@lyra/ui';
+import { Control } from "@lyra/ui/dist/src/components/table/types";
 
-export default async (body: any = {}) => {
+export default async (body: {
+  id?: number;
+  title?: string;
+  difficulty?: string;
+  control?: Control
+} = {}) => {
 	const data = [
 		{ id: 1, title: '1. Two Sum', difficulty: 'Easy', createdAt: new Date() },
 		{ id: 2, title: '2. Add Two Numbers', difficulty: 'Medium', createdAt: new Date() },
@@ -185,23 +191,20 @@ export default async (body: any = {}) => {
 	];
 
 	let res = [...data];
-
 	if (body.title) {
-		res = res.filter((item) => item.title.toUpperCase().includes(body.title.toUpperCase()));
+    const titleUpper = body.title.toUpperCase()
+		res = res.filter((item) => item.title.toUpperCase().includes(titleUpper));
 	}
 
 	if (body.difficulty) {
-		res = res.filter((item) => item.difficulty.includes(body.difficulty));
+    const difficulty = body.difficulty
+		res = res.filter((item) => item.difficulty.includes(difficulty));
 	}
 
-	return {
+  const result = staticTable(res, body.control);
+  return {
 		message: 'OK',
-		result: staticTable(res, {
-			rows: body.rows || 10,
-			page: body.page || 1,
-			field: body.field || 'createdAt',
-			direction: body.direction || 'desc',
-		}),
+		result: result,
 		count: res.length,
 	};
 };
