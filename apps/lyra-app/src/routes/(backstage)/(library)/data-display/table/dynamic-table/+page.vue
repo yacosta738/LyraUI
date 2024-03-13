@@ -3,6 +3,7 @@ import { reactive } from 'vue';
 import { XBreadcrumb, XTable, XCollapse, XButton, XDivider } from '@lyra/ui';
 
 import Basic from './Basic.vue';
+import BasicCursor from './BasicCursor.vue';
 import Loading from './Loading.vue';
 import Controllable from './Controllable.vue';
 import Draggable from './Draggable.vue';
@@ -228,6 +229,7 @@ const flux = reactive({
 	<div class="my-4 text-4xl font-extrabold">Dynamic Table</div>
 
 	<Basic class="my-8" />
+	<BasicCursor class="my-8" />
 
 	<div class="mb-4 flex flex-col border p-4">
 		<div class="mb-2">Basic</div>

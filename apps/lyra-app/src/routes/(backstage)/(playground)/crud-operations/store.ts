@@ -1,9 +1,13 @@
-import { useNotification, request } from '@lyra/ui';
+import { useNotification, request, type Control } from '@lyra/ui';
 import { reactive, readonly } from 'vue';
 import { defineStore } from 'pinia';
 
-import type { State, TodoItem, XTableProps } from './types';
-
+import type { State, TodoItem } from './types';
+const defaultTodosControl: Control = {
+	paginationType: 'offset',
+	sort: { field: 'id', direction: 'asc' },
+	offset: { rows: 10, page: 1 },
+};
 export default defineStore('/crud-operations', () => {
 	const notification = useNotification();
 
@@ -13,7 +17,7 @@ export default defineStore('/crud-operations', () => {
 		todosLoading: false,
 		todosRows: [],
 		todosCount: 0,
-		todosControl: {},
+		todosControl: defaultTodosControl,
 
 		deleteDialog: false,
 		deleteExpected: '',
@@ -44,12 +48,12 @@ export default defineStore('/crud-operations', () => {
 			actions.todos();
 		},
 		search() {
-			state.todosControl = { ...state.todosControl, page: 1 };
+			state.todosControl = defaultTodosControl;
 			state.searchForm = { ...state.searchForm, ...state.todosControl };
 			actions.todos();
 		},
 
-		changeTodos(control: XTableProps['control']) {
+		changeTodos(control: Control) {
 			state.todosControl = control;
 			state.searchForm = { ...state.searchForm, ...state.todosControl };
 			actions.todos();
@@ -88,7 +92,7 @@ export default defineStore('/crud-operations', () => {
 		state.todosLoading = false;
 		state.todosRows = [];
 		state.todosCount = 0;
-		state.todosControl = {};
+		state.todosControl = defaultTodosControl;
 
 		state.deleteDialog = false;
 		state.deleteExpected = '';

@@ -1,5 +1,4 @@
-import { XTable } from '@lyra/ui';
-import type { ComponentProps } from 'vue-component-type-helpers';
+import { type Control } from '@lyra/ui';
 
 export type TodoItem = {
 	_id?: string;
@@ -16,12 +15,10 @@ export type State = {
 	todosLoading: boolean;
 	todosRows: TodoItem[];
 	todosCount: number;
-	todosControl: XTableProps['control'];
+	todosControl: Control;
 
 	deleteDialog: boolean;
 	deleteExpected: TodoItem['title'];
 	deleteContent: TodoItem;
 	deleteLoading: boolean;
 };
-
-export type XTableProps = ComponentProps<typeof XTable>;

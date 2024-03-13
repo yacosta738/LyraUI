@@ -1,6 +1,13 @@
-import { staticTable } from '@lyra/ui';
+import { staticTable, type Control } from '@lyra/ui';
 
-export default async (body: any = {}) => {
+export default async (
+	body: {
+		id?: number;
+		title?: string;
+		difficulty?: string;
+		control?: Control;
+	} = {}
+) => {
 	const data = [
 		{ id: 1, title: '1. Two Sum', difficulty: 'Easy', createdAt: new Date() },
 		{ id: 2, title: '2. Add Two Numbers', difficulty: 'Medium', createdAt: new Date() },
@@ -185,23 +192,27 @@ export default async (body: any = {}) => {
 	];
 
 	let res = [...data];
-
 	if (body.title) {
-		res = res.filter((item) => item.title.toUpperCase().includes(body.title.toUpperCase()));
+		const titleUpper = body.title.toUpperCase();
+		res = res.filter((item) => item.title.toUpperCase().includes(titleUpper));
 	}
 
 	if (body.difficulty) {
-		res = res.filter((item) => item.difficulty.includes(body.difficulty));
+		const difficulty = body.difficulty;
+		res = res.filter((item) => item.difficulty.includes(difficulty));
 	}
 
+	const result = staticTable(res, body.control);
+	let count = 0;
+	if (body.control?.paginationType === 'offset') {
+		count = res.length;
+	} else {
+		// if is the end of the list, the cursor is empty
+		count = result.length === 0 ? 0 : res.length;
+	}
 	return {
 		message: 'OK',
-		result: staticTable(res, {
-			rows: body.rows || 10,
-			page: body.page || 1,
-			field: body.field || 'createdAt',
-			direction: body.direction || 'desc',
-		}),
-		count: res.length,
+		result: result,
+		count: count,
 	};
 };

@@ -7,14 +7,14 @@ import leetcode from './leetcode';
 
 type TableProps = ComponentProps<typeof XTable>;
 
-const defaultControlOffset = {
-  paginationType: 'offset',
-  sort: { field: 'id', direction: 'asc' },
-  offset: { rows: 10, page: 1 },
+const defaultControlCursor = {
+	paginationType: 'cursor',
+	sort: { field: 'id', direction: 'asc' },
+	cursor: { cursor: '0', limit: 10 },
 };
 const state = reactive({
 	rows: [] as any[],
-	control: defaultControlOffset as TableProps['control'],
+	control: defaultControlCursor as TableProps['control'],
 	count: 0,
 });
 
@@ -34,22 +34,35 @@ function reset() {
 }
 
 async function search() {
-	state.control = defaultControlOffset as TableProps['control'];
+	state.control = defaultControlCursor as TableProps['control'];
 	const response = await leetcode({ ...body, control: state.control });
 	state.rows = response.result;
 	state.count = response.count;
+	if (state.count === 0) {
+		state.control = {
+			...state.control,
+			cursor: { cursor: '', limit: 10 },
+		} as TableProps['control'];
+	}
 }
 
 async function change(params: TableProps['control']) {
 	state.control = params;
 	const response = await leetcode({ ...body, control: params });
 	state.rows = response.result;
+	state.count = response.count;
+	if (state.count === 0) {
+		state.control = {
+			...state.control,
+			cursor: { cursor: '', limit: 10 },
+		} as TableProps['control'];
+	}
 }
 </script>
 
 <template>
 	<div>
-		<div class="my-4 text-3xl font-bold">Basic</div>
+		<div class="my-4 text-3xl font-bold">Basic Table with Cursor pagination Control</div>
 
 		<div class="space-y-8 rounded-lg bg-white p-8 dark:bg-slate-800">
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -77,7 +90,6 @@ async function change(params: TableProps['control']) {
 					{ key: 'difficulty', name: 'Difficulty' },
 				]"
 				:rows="state.rows"
-				:count="state.count"
 				@change="change"
 			/>
 		</div>

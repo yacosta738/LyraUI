@@ -61,6 +61,7 @@ export { default as XSpinner } from './components/spinner/Spinner.vue';
 export { default as XStepper } from './components/stepper';
 export { default as XSwitch } from './components/switch/Switch.vue';
 export { default as XTable } from './components/table';
+export * from './components/table/types';
 export { default as XTabs } from './components/tabs';
 export { default as XTag } from './components/tag/Tag.vue';
 export { default as XTextField } from './components/text-field/TextField.vue';

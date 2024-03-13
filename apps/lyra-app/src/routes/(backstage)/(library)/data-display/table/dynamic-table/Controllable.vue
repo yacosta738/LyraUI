@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
-import { XTable, XButton } from '@lyra/ui';
+import { Control, XButton, XTable } from '@lyra/ui';
 
+const defaultOffsetControl: Control = { paginationType: 'offset', offset: { rows: 10, page: 1 } };
 const flux = reactive({
 	cols: [
 		{ key: 'name', name: 'Name' },
@@ -59,7 +60,7 @@ const flux = reactive({
 			status: 'Inactive',
 		},
 	],
-	control: { rows: 10, page: 1 },
+	control: defaultOffsetControl,
 });
 </script>
 
@@ -73,7 +74,9 @@ const flux = reactive({
 
 		<div class="flex flex-col gap-2">
 			<div>{{ flux.control }}</div>
-			<div><XButton @click="flux.control = { rows: 10, page: 1 }">Reset</XButton></div>
+			<div>
+				<XButton @click="flux.control = defaultOffsetControl">Reset</XButton>
+			</div>
 		</div>
 	</div>
 </template>

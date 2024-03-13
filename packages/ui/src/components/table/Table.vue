@@ -5,14 +5,14 @@ import { useLocaler, useLocale } from 'vue-localer';
 
 import type staticTable from '../../utilities/static-table/staticTable';
 import Spinner from '../spinner/Spinner.vue';
-import Button from '../button/Button.vue';
-import Select from '../select/Select.vue';
 import Checkbox from '../checkbox/Checkbox.vue';
 
-import type { ColumnItem, Control } from './types';
+import { ColumnItem, Control, CursorPage, defaultControl, OffsetPage, SortType } from './types';
 import Column from './Column.vue';
 import Row from './Row.vue';
 import Cell from './Cell.vue';
+import TableControl from './TableControl.vue';
+import TableControlCursor from './TableControlCursor.vue';
 
 const props = defineProps<{
 	value?: T[];
@@ -35,12 +35,9 @@ const props = defineProps<{
 const emit = defineEmits<{
 	(evt: 'update:value', val: T[]): void;
 	(evt: 'update:selected', val: T[]): void;
-	(evt: 'change', val: { rows?: number; page?: number; field?: string; direction?: string }): void;
+	(evt: 'change', val: Control): void;
 	(evt: 'clickRow', val: T): void;
-	(
-		evt: 'update:control',
-		val: { rows?: number; page?: number; field?: string; direction?: string }
-	): void;
+	(evt: 'update:control', val: Control): void;
 	(evt: 'selecteAll', val: boolean, arr: T[]): void;
 }>();
 
@@ -68,7 +65,7 @@ const controlModel = computed({
 			!props.control ||
 			(typeof props.control === 'object' && Object.keys(props.control).length === 0)
 		) {
-			return { rows: 10, page: 1, field: 'createdAt', direction: 'desc' };
+			return defaultControl;
 		}
 
 		return props.control;
@@ -90,6 +87,7 @@ const flux = reactive({
 		{ label: '50', value: 50 },
 	],
 	currentPage: 1,
+	cursor: '',
 	previousPage() {
 		if (flux.currentPage === 1) return;
 		flux.currentPage -= 1;
@@ -100,9 +98,13 @@ const flux = reactive({
 		flux.currentPage += 1;
 		flux._updateChange();
 	},
+  loadMore() {
+    flux.cursor = flux.rows[flux.rows.length - 1].id.toString();
+    flux._updateChange();
+  },
 
 	sortField: 'createdAt' as string | undefined,
-	sortDirection: 'desc' as string | undefined,
+	sortDirection: 'desc' as SortType | undefined,
 	onSort(col: any) {
 		if (props.loading) return;
 
@@ -118,19 +120,29 @@ const flux = reactive({
 	},
 
 	_updateChange() {
-		emit('change', {
+		const offsetPage: OffsetPage = {
 			rows: flux.rowsPerPage,
 			page: flux.currentPage,
-			field: flux.sortField,
-			direction: flux.sortDirection,
-		});
-
-		controlModel.value = {
-			rows: flux.rowsPerPage,
-			page: flux.currentPage,
-			field: flux.sortField,
-			direction: flux.sortDirection,
 		};
+
+		const cursorPage: CursorPage = {
+			cursor: flux.cursor,
+			limit: flux.rowsPerPage,
+		};
+
+		const sort = {
+			field: flux.sortField,
+			direction: flux.sortDirection || 'desc',
+		};
+		const newControlModel = {
+			paginationType: controlModel.value.paginationType,
+			sort: sort,
+			offset: offsetPage,
+			cursor: cursorPage,
+		};
+
+		emit('change', newControlModel);
+		controlModel.value = newControlModel;
 	},
 
 	clickRow(row: T) {
@@ -160,11 +172,16 @@ watch(
 	() => controlModel.value,
 	(val) => {
 		if (Object.keys(val)?.length) {
-			flux.rowsPerPage = val.rows || 10;
-			flux.currentPage = val.page || 1;
-			flux.sortField = val.field || 'createdAt';
-			flux.sortDirection = val.direction || 'desc';
+			if (val.paginationType === 'offset') {
+				flux.rowsPerPage = val.offset?.rows || 10;
+				flux.currentPage = val.offset?.page || 1;
+			} else {
+				flux.cursor = val.cursor?.cursor || '';
+				flux.rowsPerPage = val.cursor?.limit || 10;
+			}
 
+			flux.sortField = val.sort?.field || 'createdAt';
+			flux.sortDirection = val.sort?.direction || 'desc';
 			if (props.static && props.rows?.length) {
 				flux.rows = props.static(props.rows, controlModel.value);
 			}
@@ -247,6 +264,7 @@ watch(
 	},
 	{ deep: true }
 );
+const isCount = computed(() => typeof countRef.value === 'number');
 </script>
 
 <template>
@@ -384,43 +402,25 @@ watch(
 			</table>
 		</div>
 
-		<div
-			v-if="typeof countRef === 'number'"
-			class="flex flex-col items-center justify-end gap-4 p-4 text-sm md:flex-row"
-		>
-			<div class="Table-RowsPerPage">
-				{{ locale.rowsPerPage || 'Rows per page:' }}
-				<div class="ml-2 w-auto">
-					<Select
-						v-model:value="flux.rowsPerPage"
-						:options="flux.rowsPerPageOptions"
-						:disabled="loading"
-						class="!border-transparent"
-					/>
-				</div>
-			</div>
+		<TableControl
+			v-if="isCount && controlModel.paginationType === 'offset'"
+			:current-page="flux.currentPage"
+			:rowsPerPage="flux.rowsPerPage"
+			:rowsPerPageOptions="flux.rowsPerPageOptions"
+			:loading="loading || false"
+			:paginationInfo="paginationInfo"
+			@previousPage="flux.previousPage"
+			@nextPage="flux.nextPage"
+			@updateRowsPerPage="flux.rowsPerPage = $event"
+		/>
 
-			<div class="flex items-center">{{ paginationInfo }}</div>
-
-			<div class="flex gap-4">
-				<Button
-					prepend="i-material-symbols-chevron-left-rounded"
-					:label="locale.previousPage || 'Previous'"
-					variant="text"
-					color="secondary"
-					:disabled="loading"
-					@click="flux.previousPage"
-				/>
-				<Button
-					:label="locale.nextPage || 'Next'"
-					append="i-material-symbols-chevron-right-rounded"
-					variant="text"
-					color="secondary"
-					:disabled="loading"
-					@click="flux.nextPage"
-				/>
-			</div>
-		</div>
+		<TableControlCursor
+			v-else-if="controlModel.paginationType === 'cursor'"
+			:cursor="flux.cursor"
+			:limit="flux.rowsPerPage"
+			:loading="loading || false"
+			@loadMore="flux.loadMore"
+		/>
 	</div>
 </template>
 
@@ -431,10 +431,6 @@ watch(
 
 .Table-Element {
 	@apply w-full border-collapse;
-}
-
-.Table-RowsPerPage {
-	@apply flex items-center;
 }
 
 .sticky-tr:hover {

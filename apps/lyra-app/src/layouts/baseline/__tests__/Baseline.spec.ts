@@ -13,15 +13,15 @@ import Baseline from '../Baseline.vue';
 let wrapper: VueWrapper;
 
 afterEach(() => {
-  wrapper.unmount();
+	wrapper.unmount();
 });
 
 test('Baseline', async () => {
-  vi.spyOn(xui, 'request').mockImplementation((url): any => {
-    if (url === '/auth/user') {
-      return { _data: user.admin, status: 200 };
-    }
-  });
+	vi.spyOn(xui, 'request').mockImplementation((url): any => {
+		if (url === '/auth/user') {
+			return { _data: user.admin, status: 200 };
+		}
+	});
 
-  wrapper = mount(Baseline, { global: { plugins: [router, localer,  createTestingPinia()] } });
+	wrapper = mount(Baseline, { global: { plugins: [router, localer, createTestingPinia()] } });
 });
