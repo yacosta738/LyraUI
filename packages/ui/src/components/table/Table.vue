@@ -12,6 +12,7 @@ import Column from './Column.vue';
 import Row from './Row.vue';
 import Cell from './Cell.vue';
 import TableControl from './TableControl.vue';
+import TableControlCursor from './TableControlCursor.vue';
 
 const props = defineProps<{
 	value?: T[];
@@ -97,6 +98,10 @@ const flux = reactive({
 		flux.currentPage += 1;
 		flux._updateChange();
 	},
+  loadMore() {
+    flux.cursor = flux.rows[flux.rows.length - 1].id.toString();
+    flux._updateChange();
+  },
 
 	sortField: 'createdAt' as string | undefined,
 	sortDirection: 'desc' as SortType | undefined,
@@ -115,12 +120,6 @@ const flux = reactive({
 	},
 
 	_updateChange() {
-		// emit('change', {
-		// 	rows: flux.rowsPerPage,
-		// 	page: flux.currentPage,
-		// 	field: flux.sortField,
-		// 	direction: flux.sortDirection,
-		// });
 		const offsetPage: OffsetPage = {
 			rows: flux.rowsPerPage,
 			page: flux.currentPage,
@@ -404,7 +403,7 @@ const isCount = computed(() => typeof countRef.value === 'number');
 		</div>
 
 		<TableControl
-			v-if="isCount"
+			v-if="isCount && controlModel.paginationType === 'offset'"
 			:current-page="flux.currentPage"
 			:rowsPerPage="flux.rowsPerPage"
 			:rowsPerPageOptions="flux.rowsPerPageOptions"
@@ -413,6 +412,14 @@ const isCount = computed(() => typeof countRef.value === 'number');
 			@previousPage="flux.previousPage"
 			@nextPage="flux.nextPage"
 			@updateRowsPerPage="flux.rowsPerPage = $event"
+		/>
+
+		<TableControlCursor
+			v-else-if="controlModel.paginationType === 'cursor'"
+			:cursor="flux.cursor"
+			:limit="flux.rowsPerPage"
+			:loading="loading || false"
+			@loadMore="flux.loadMore"
 		/>
 	</div>
 </template>

@@ -203,9 +203,16 @@ export default async (
 	}
 
 	const result = staticTable(res, body.control);
+	let count = 0;
+	if (body.control?.paginationType === 'offset') {
+		count = res.length;
+	} else {
+		// if is the end of the list, the cursor is empty
+		count = result.length === 0 ? 0 : res.length;
+	}
 	return {
 		message: 'OK',
 		result: result,
-		count: res.length,
+		count: count,
 	};
 };
