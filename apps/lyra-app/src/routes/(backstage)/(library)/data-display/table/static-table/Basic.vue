@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
-import { XTextField, XSelect, XButton, XTable } from '@lyra/ui';
-import { staticTable } from '@lyra/ui';
+import { onMounted, ref } from 'vue';
+import { Control, staticTable, XButton, XSelect, XTable, XTextField } from '@lyra/ui';
 
 import leetcode from './leetcode';
 
@@ -10,7 +9,12 @@ const difficulty = ref('');
 
 const response = ref<typeof leetcode>([]);
 const rows = ref<typeof leetcode>([]);
-const control = ref({ rows: 10, page: 1, field: 'id', direction: 'asc' });
+const defaultOffsetControl: Control = {
+	paginationType: 'offset',
+	sort: { field: 'id', direction: 'asc' },
+	offset: { rows: 10, page: 1 },
+};
+const control = ref(defaultOffsetControl);
 
 onMounted(() => {
 	response.value = structuredClone(leetcode);
@@ -35,7 +39,7 @@ function search() {
 	}
 
 	rows.value = data;
-	control.value = { rows: 10, page: 1, field: 'id', direction: 'asc' };
+	control.value = defaultOffsetControl;
 }
 </script>
 

@@ -11,7 +11,7 @@ const emit = defineEmits<{
 }>();
 const locale = useLocale();
 export interface TableControlProps {
-  currentPage: number;
+	currentPage: number;
 	rowsPerPage: number;
 	rowsPerPageOptions: { label: string; value: number }[];
 	loading: boolean;
@@ -22,13 +22,13 @@ const flux = reactive({
 });
 
 function previousPage() {
-  if (props.currentPage > 1) {
-    emit('previousPage');
-  }
+	if (props.currentPage > 1) {
+		emit('previousPage');
+	}
 }
 
 function nextPage() {
-  emit('nextPage');
+	emit('nextPage');
 }
 function updateRowsPerPage(val?: string | number) {
 	if (typeof val === 'number') {

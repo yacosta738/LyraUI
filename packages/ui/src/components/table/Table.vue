@@ -7,7 +7,7 @@ import type staticTable from '../../utilities/static-table/staticTable';
 import Spinner from '../spinner/Spinner.vue';
 import Checkbox from '../checkbox/Checkbox.vue';
 
-import { ColumnItem, Control, CursorPage, defaultControl, OffsetPage, SortType } from "./types";
+import { ColumnItem, Control, CursorPage, defaultControl, OffsetPage, SortType } from './types';
 import Column from './Column.vue';
 import Row from './Row.vue';
 import Cell from './Cell.vue';
@@ -34,7 +34,7 @@ const props = defineProps<{
 const emit = defineEmits<{
 	(evt: 'update:value', val: T[]): void;
 	(evt: 'update:selected', val: T[]): void;
-  (evt: 'change', val: Control): void;
+	(evt: 'change', val: Control): void;
 	(evt: 'clickRow', val: T): void;
 	(evt: 'update:control', val: Control): void;
 	(evt: 'selecteAll', val: boolean, arr: T[]): void;
@@ -59,17 +59,17 @@ const valueModel = computed({
 const countRef = toRef(props, 'count', undefined);
 
 const controlModel = computed({
-  get: () => {
-    if (
-      !props.control ||
-      (typeof props.control === 'object' && Object.keys(props.control).length === 0)
-    ) {
-      return defaultControl;
-    }
+	get: () => {
+		if (
+			!props.control ||
+			(typeof props.control === 'object' && Object.keys(props.control).length === 0)
+		) {
+			return defaultControl;
+		}
 
-    return props.control;
-  },
-  set: (val) => emit('update:control', val),
+		return props.control;
+	},
+	set: (val) => emit('update:control', val),
 });
 
 const flux = reactive({
@@ -86,7 +86,7 @@ const flux = reactive({
 		{ label: '50', value: 50 },
 	],
 	currentPage: 1,
-  cursor: '',
+	cursor: '',
 	previousPage() {
 		if (flux.currentPage === 1) return;
 		flux.currentPage -= 1;
@@ -121,29 +121,29 @@ const flux = reactive({
 		// 	field: flux.sortField,
 		// 	direction: flux.sortDirection,
 		// });
-    const offsetPage: OffsetPage = {
-      rows: flux.rowsPerPage,
-      page: flux.currentPage,
-    }
+		const offsetPage: OffsetPage = {
+			rows: flux.rowsPerPage,
+			page: flux.currentPage,
+		};
 
-    const cursorPage: CursorPage ={
-      cursor: flux.cursor,
-      limit: flux.rowsPerPage,
-    }
+		const cursorPage: CursorPage = {
+			cursor: flux.cursor,
+			limit: flux.rowsPerPage,
+		};
 
-    const sort = {
-      field: flux.sortField,
-      direction: flux.sortDirection || 'desc'
-    }
-    const newControlModel = {
-      paginationType: controlModel.value.paginationType,
-      sort: sort,
-      offset: offsetPage,
-      cursor: cursorPage,
-    };
+		const sort = {
+			field: flux.sortField,
+			direction: flux.sortDirection || 'desc',
+		};
+		const newControlModel = {
+			paginationType: controlModel.value.paginationType,
+			sort: sort,
+			offset: offsetPage,
+			cursor: cursorPage,
+		};
 
-    emit('change',  newControlModel);
-    controlModel.value = newControlModel;
+		emit('change', newControlModel);
+		controlModel.value = newControlModel;
 	},
 
 	clickRow(row: T) {
@@ -173,16 +173,16 @@ watch(
 	() => controlModel.value,
 	(val) => {
 		if (Object.keys(val)?.length) {
-      if(val.paginationType === 'offset') {
-        flux.rowsPerPage = val.offset?.rows || 10;
-        flux.currentPage = val.offset?.page || 1;
-      } else {
-        flux.cursor = val.cursor?.cursor || '';
-        flux.rowsPerPage = val.cursor?.limit || 10;
-      }
+			if (val.paginationType === 'offset') {
+				flux.rowsPerPage = val.offset?.rows || 10;
+				flux.currentPage = val.offset?.page || 1;
+			} else {
+				flux.cursor = val.cursor?.cursor || '';
+				flux.rowsPerPage = val.cursor?.limit || 10;
+			}
 
-      flux.sortField = val.sort?.field || 'createdAt';
-      flux.sortDirection = val.sort?.direction || 'desc';
+			flux.sortField = val.sort?.field || 'createdAt';
+			flux.sortDirection = val.sort?.direction || 'desc';
 			if (props.static && props.rows?.length) {
 				flux.rows = props.static(props.rows, controlModel.value);
 			}
@@ -404,8 +404,8 @@ const isCount = computed(() => typeof countRef.value === 'number');
 		</div>
 
 		<TableControl
-      v-if="isCount"
-      :current-page="flux.currentPage"
+			v-if="isCount"
+			:current-page="flux.currentPage"
 			:rowsPerPage="flux.rowsPerPage"
 			:rowsPerPageOptions="flux.rowsPerPageOptions"
 			:loading="loading || false"
