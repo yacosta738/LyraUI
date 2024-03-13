@@ -1,5 +1,4 @@
-import chunk from 'lodash/chunk';
-import sortBy from 'lodash/sortBy';
+import { chunk, sortBy } from '@lyra/utilities';
 import { Control } from '~/components/table/types';
 
 const defaultField = 'createdAt';

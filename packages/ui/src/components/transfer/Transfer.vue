@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue';
 import Draggable from 'vuedraggable';
-import remove from 'lodash/remove';
+import { remove } from '@lyra/utilities';
 
 import Checkbox from '../checkbox/Checkbox.vue';
 import Button from '../button/Button.vue';

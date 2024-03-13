@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { InputHTMLAttributes } from 'vue';
 import { computed } from 'vue';
-import uniqueId from 'lodash/uniqueId';
 
 interface Props extends /* @vue-ignore */ InputHTMLAttributes {
 	value?: boolean;
@@ -27,7 +26,7 @@ const valueModel = computed({
 	set: (val) => !props.readonly && emit('update:value', val),
 });
 
-const uid = uniqueId('uid-');
+const uid = crypto.randomUUID();
 </script>
 
 <template>

@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { computed, reactive, watch } from 'vue';
 import { format as _format, add, sub, getYear, setYear, getMonth, setMonth } from 'date-fns';
-import chunk from 'lodash/chunk';
-import range from 'lodash/range';
-import groupBy from 'lodash/groupBy';
+import { chunk, range, groupBy } from '@lyra/utilities';
 
 const props = withDefaults(
 	defineProps<{

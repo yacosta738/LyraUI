@@ -12,7 +12,7 @@ import {
 	nextSunday,
 	nextSaturday,
 } from 'date-fns';
-import chunk from 'lodash/chunk';
+import { chunk } from '@lyra/utilities';
 
 import useScrollParent from '../../composables/scroll-parent/useScrollParent';
 

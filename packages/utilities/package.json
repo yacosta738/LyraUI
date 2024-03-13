@@ -1,0 +1,46 @@
+{
+  "name": "@lyra/utilities",
+  "version": "0.0.1",
+  "description": "A collection of utilities for Lyra",
+  "type": "module",
+  "main": "./dist/utilities.umd.cjs",
+  "module": "./dist/utilities.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/utilities.js",
+      "require": "./dist/utilities.umd.cjs"
+    }
+  },
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "scripts": {
+    "build:types": "tsc --build",
+    "build:vite": "vite build",
+    "dev": "echo \"DEV: 🟢 Starting with dev mode\" && vite build -- --watch",
+    "build": "run-p build:vite build:types",
+    "preview": "vite preview",
+    "check": "run-s build:types build:vite",
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run"
+  },
+  "keywords": [
+    "lyra",
+    "utilities"
+  ],
+  "author": "Yuniel Acosta <www.yunielacosta.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@lyra/config": "workspace:^",
+    "@lyra/tsconfig": "workspace:^",
+    "@types/lodash": "^4.17.0",
+    "vite-plugin-dts": "^3.7.3"
+  }
+}
