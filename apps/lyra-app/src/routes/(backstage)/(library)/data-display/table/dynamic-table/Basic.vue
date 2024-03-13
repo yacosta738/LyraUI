@@ -8,9 +8,9 @@ import leetcode from './leetcode';
 type TableProps = ComponentProps<typeof XTable>;
 
 const defaultControlOffset = {
-  paginationType: 'offset',
-  sort: { field: 'id', direction: 'asc' },
-  offset: { rows: 10, page: 1 },
+	paginationType: 'offset',
+	sort: { field: 'id', direction: 'asc' },
+	offset: { rows: 10, page: 1 },
 };
 const state = reactive({
 	rows: [] as any[],

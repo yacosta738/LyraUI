@@ -25,10 +25,10 @@ function offsetPagination<T>(control: Control, arr: T[]) {
 function cursorPagination<T extends Record<string, any>>(control: Control, arr: T[]) {
 	const cursor = control.cursor;
 	const limit = cursor?.limit ?? 10;
-  // find all the items that are before (greater) the cursor and then take the next limit items
-  const cursorIndex = arr.findIndex((item) => item['id'] == cursor?.cursor);
-  const page = cursorIndex === -1 ? 0 : cursorIndex + 1;
-  return arr.slice(page, page + limit);
+	// find all the items that are before (greater) the cursor and then take the next limit items
+	const cursorIndex = arr.findIndex((item) => item['id'] == cursor?.cursor);
+	const page = cursorIndex === -1 ? 0 : cursorIndex + 1;
+	return arr.slice(page, page + limit);
 }
 
 export default <T extends Record<string, any>>(rows: T[], control: Control = defaultControl) => {

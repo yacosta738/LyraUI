@@ -98,10 +98,10 @@ const flux = reactive({
 		flux.currentPage += 1;
 		flux._updateChange();
 	},
-  loadMore() {
-    flux.cursor = flux.rows[flux.rows.length - 1].id.toString();
-    flux._updateChange();
-  },
+	loadMore() {
+		flux.cursor = flux.rows[flux.rows.length - 1].id.toString();
+		flux._updateChange();
+	},
 
 	sortField: 'createdAt' as string | undefined,
 	sortDirection: 'desc' as SortType | undefined,
