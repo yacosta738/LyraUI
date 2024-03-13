@@ -113,7 +113,6 @@ This seed repository provides the following features:
 - [x] [Localer](https://github.com/Vanilla-IceCream/vue-localer) - Internationalization and Localization
 - [x] [Use](https://github.com/vueuse/vueuse) - Composition Utilities
 - [x] [Qrcode Image](https://github.com/Vanilla-IceCream/vue-qrcode-image) - QR Code Generation
-- [x] [Lodash](https://github.com/lodash/lodash) - JavaScript Utilities
 - [x] [Date Fns](https://github.com/date-fns/date-fns) - Date Utilities
 - [x] [UnoCSS](https://github.com/unocss/unocss) - CSS Utilities
 - [x] [Iconify](https://github.com/iconify/iconify) - Icon Utilities

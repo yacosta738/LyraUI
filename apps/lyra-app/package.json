@@ -35,7 +35,7 @@
     "@lyra/config": "workspace:^",
     "@lyra/mock-responses": "workspace:^",
     "@iconify/json": "^2.2.191",
-    "@types/lodash": "^4.14.202",
+    "@types/lodash": "^4.17.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/test-utils": "^2.4.4",
     "sass": "^1.71.1",
