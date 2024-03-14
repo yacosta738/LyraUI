@@ -50,13 +50,9 @@
     "test": "vitest --coverage --run",
     "test:watch": "vitest --watch"
   },
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
   "devDependencies": {
     "@lyra/config": "workspace:^",
     "@lyra/tsconfig": "0.0.1",
-    "@types/lodash": "^4.17.0",
     "vite-plugin-dts": "^3.7.3",
     "typescript": "^5.4.2"
   }
