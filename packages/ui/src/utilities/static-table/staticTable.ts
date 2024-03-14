@@ -16,7 +16,7 @@ const defaultControl: Control = {
 
 function offsetPagination<T>(control: Control, arr: T[]) {
 	const offset = control.offset;
-	const chunked = chunk(arr, offset?.rows);
+	const chunked = chunk(arr, offset?.rows ?? 10);
 	const page = (offset?.page ?? 1) - 1;
 	return chunked[page];
 }

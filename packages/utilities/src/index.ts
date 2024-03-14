@@ -1,6 +1,6 @@
 import { range } from './range/range';
+import { chunk } from './chunk/chunk';
 // lodash functions
-import chunk from 'lodash/chunk';
 import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
 import remove from 'lodash/remove';
