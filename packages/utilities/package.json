@@ -47,7 +47,7 @@
     "preview": "vite preview",
     "check": "run-s build:types build:vite",
     "clean": "rm -rf dist",
-    "test": "vitest"
+    "test": "vitest --coverage --run"
   },
   "dependencies": {
     "lodash": "^4.17.21"

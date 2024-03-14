@@ -4,7 +4,7 @@ export const sharedVitestConfig = (dirname) =>
 	mergeConfig(sharedViteConfig(dirname), {
 		test: {
 			// run the tests inside the folder __tests__ and skip the ones .spec.e2e files
-			include: ['**/__tests__/**/*.spec.{ts,js}'],
+			include: ['**/__tests__/**/*.spec.{ts,js}', '**/*.spec.{ts,js}'],
 			exclude: ['tests/e2e/**/*.spec.e2e.{ts,js}'],
 			testMatch: ['**/__tests__/**/*.spec.{ts,js}'],
 			coverage: {
