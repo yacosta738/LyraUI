@@ -47,7 +47,7 @@
     "preview": "vite preview",
     "check": "run-s build:types build:vite",
     "clean": "rm -rf dist",
-    "test": "echo \"⚠️ No tests available for now (vitest)\" && exit 0"
+    "test": "vitest"
   },
   "dependencies": {
     "lodash": "^4.17.21"
