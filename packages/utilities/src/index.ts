@@ -1,7 +1,7 @@
 import { range } from './range/range';
 import { chunk } from './chunk/chunk';
+import { groupBy } from './group-by/group-by';
 // lodash functions
-import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
 import remove from 'lodash/remove';
 import isEqual from 'lodash/isEqual';
