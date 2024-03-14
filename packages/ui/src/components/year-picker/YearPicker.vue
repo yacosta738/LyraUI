@@ -2,7 +2,7 @@
 import { nextTick, ref, computed, reactive } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import { add, sub, getYear } from 'date-fns';
-import range from 'lodash/range';
+import { range } from '@lyra/utilities';
 
 import useScrollParent from '../../composables/scroll-parent/useScrollParent';
 

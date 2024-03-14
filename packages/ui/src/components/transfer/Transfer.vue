@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue';
 import Draggable from 'vuedraggable';
-import remove from 'lodash/remove';
+import { remove } from '@lyra/utilities';
 
 import Checkbox from '../checkbox/Checkbox.vue';
 import Button from '../button/Button.vue';
@@ -29,7 +29,7 @@ function changeList() {
 }
 
 function toRight() {
-	const source = remove(sourceModel.value, (item) => item.checked);
+	const source = remove(sourceModel.value, (item: Item) => !!item.checked);
 
 	targetModel.value = [...targetModel.value, ...source].map((item) => ({
 		...item,
@@ -38,7 +38,7 @@ function toRight() {
 }
 
 function toLeft() {
-	const target = remove(targetModel.value, (item) => item.checked);
+	const target = remove(targetModel.value, (item: Item) => !!item.checked);
 
 	sourceModel.value = [...sourceModel.value, ...target].map((item) => ({
 		...item,

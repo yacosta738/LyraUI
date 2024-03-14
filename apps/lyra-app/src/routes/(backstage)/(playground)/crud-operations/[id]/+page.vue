@@ -10,7 +10,7 @@ import {
 	XButton,
 	XLeaveConfirmation,
 } from '@lyra/ui';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from '@lyra/utilities';
 
 import useStore from './store';
 import useSchema from './schema';

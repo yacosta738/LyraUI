@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import uniqueId from 'lodash/uniqueId';
-
 defineProps<{
 	label?: string;
 	required?: boolean;
@@ -8,7 +6,7 @@ defineProps<{
 	help?: string;
 }>();
 
-const uid = uniqueId('uid-');
+const uid = crypto.randomUUID();
 </script>
 
 <template>

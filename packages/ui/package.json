@@ -3,6 +3,12 @@
   "description": "UI components for Lyra",
   "version": "0.0.1",
   "private": true,
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
   "type": "module",
   "sideEffects": false,
   "main": "./dist/lyra-vue-ui.umd.js",
@@ -23,6 +29,15 @@
     "vue",
     "common ui"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yacosta738/LyraUI.git",
+    "directory": "packages/ui",
+    "branch": "main"
+  },
+  "bugs": {
+    "url": "https://github.com/yacosta738/LyraUI/issues"
+  },
   "scripts": {
     "build:types": "vue-tsc --noEmit && tsc-alias -p tsconfig.json",
     "build:vite": "vite build",
@@ -33,8 +48,8 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "typescript": ">=4.7",
-    "vue": "^3.3.0"
+    "typescript": "^5.4.2",
+    "vue": "^3.4.21"
   },
   "dependencies": {
     "@tiptap/core": "^2.2.4",
@@ -68,7 +83,6 @@
     "@vueuse/core": "^10.9.0",
     "date-fns": "^3.4.0",
     "echarts": "^5.5.0",
-    "lodash": "^4.17.21",
     "ofetch": "^1.3.3",
     "pinia": "^2.1.7",
     "shiki": "^1.1.7",
@@ -85,8 +99,8 @@
     "@unocss/reset": "^0.58.5",
     "@iconify/json": "^2.2.191",
     "@lyra/config": "workspace:^",
-    "@lyra/tsconfig": "workspace:^",
-    "@types/lodash": "^4.14.202",
+    "@lyra/tsconfig": "0.0.1",
+    "@lyra/utilities": "0.0.1",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitest/coverage-v8": "^1.3.1",
     "@vue/test-utils": "^2.4.4",

@@ -12,8 +12,7 @@ import {
 	getMonth,
 	setMonth,
 } from 'date-fns';
-import chunk from 'lodash/chunk';
-import range from 'lodash/range';
+import { chunk, range } from '@lyra/utilities';
 
 import useScrollParent from '../../composables/scroll-parent/useScrollParent';
 

@@ -1,0 +1,59 @@
+{
+  "name": "@lyra/utilities",
+  "version": "0.0.1",
+  "description": "A collection of utilities for Lyra",
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/utilities.js",
+  "module": "./dist/utilities.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/utilities.js",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/utilities.js"
+      }
+    }
+  },
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "keywords": [
+    "lyra",
+    "utilities"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yacosta738/LyraUI.git",
+    "directory": "packages/utilities",
+    "branch": "main"
+  },
+  "bugs": {
+    "url": "https://github.com/yacosta738/LyraUI/issues"
+  },
+  "scripts": {
+    "build:types": "tsc --build",
+    "build:vite": "vite build",
+    "dev": "echo \"DEV: 🟢 Starting with dev mode\" && vite build -- --watch",
+    "build": "run-p build:vite build:types",
+    "preview": "vite preview",
+    "check": "run-s build:types build:vite",
+    "clean": "rm -rf dist",
+    "test": "vitest --coverage --run",
+    "test:watch": "vitest --watch"
+  },
+  "devDependencies": {
+    "@lyra/config": "workspace:^",
+    "@lyra/tsconfig": "0.0.1",
+    "vite-plugin-dts": "^3.7.3",
+    "typescript": "^5.4.2"
+  }
+}

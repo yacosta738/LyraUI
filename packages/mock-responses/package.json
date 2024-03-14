@@ -2,6 +2,12 @@
   "name": "@lyra/mock-responses",
   "description": "Mock responses for Lyra",
   "version": "0.0.1",
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
   "private": true,
   "type": "module",
   "types": "./src/index.ts",
@@ -15,8 +21,8 @@
     }
   },
   "keywords": [
-    "vue",
-    "common ui"
+    "mock",
+    "common responses"
   ],
   "scripts": {
     "check": "tsc --noEmit",
@@ -24,14 +30,14 @@
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "typescript": ">=4.7",
-    "vue": "^3.3.0"
+    "typescript": "^5.4.2",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@lyra/tsconfig": "workspace:^",
+    "@lyra/tsconfig": "0.0.1",
     "tsc-alias": "1.8.8",
     "typescript": "^5.4.2",
-    "vite": "^5.1.5",
+    "vite": "^5.1.6",
     "vite-plugin-dts": "^3.7.3",
     "vitest": "^1.3.1"
   },

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
-import uniqueId from 'lodash/uniqueId';
 
 defineOptions({
 	inheritAttrs: false,
@@ -19,7 +18,7 @@ const emit = defineEmits<{
 	(evt: 'blur', val: Event): void;
 }>();
 
-const uid = uniqueId('uid-');
+const uid = crypto.randomUUID();
 
 const valueModel = computed({
 	get: () => props.value || false,
