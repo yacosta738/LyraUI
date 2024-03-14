@@ -3,13 +3,17 @@
   "version": "0.0.1",
   "description": "A collection of utilities for Lyra",
   "type": "module",
-  "main": "./dist/utilities.umd.cjs",
+  "main": "./dist/utilities.js",
   "module": "./dist/utilities.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/utilities.js",
-      "require": "./dist/utilities.umd.cjs"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/utilities.js",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/utilities.js"
+      }
     }
   },
   "files": [

@@ -11,6 +11,7 @@ export default mergeConfig(
 			lib: {
 				entry: resolve(__dirname, 'src/index.ts'),
 				name: 'utilities',
+				formats: ['es'],
 			},
 			rollupOptions: {
 				external: [
