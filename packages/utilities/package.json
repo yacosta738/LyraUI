@@ -28,7 +28,7 @@
     "preview": "vite preview",
     "check": "run-s build:types build:vite",
     "clean": "rm -rf dist",
-    "test": "echo \"⚠\uFE0F No tests available for now (vitest)\" && exit 0"
+    "test": "echo \"⚠️ No tests available for now (vitest)\" && exit 0"
   },
   "keywords": [
     "lyra",
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@lyra/config": "workspace:^",
-    "@lyra/tsconfig": "workspace:^",
+    "@lyra/tsconfig": "0.0.1",
     "@types/lodash": "^4.17.0",
     "vite-plugin-dts": "^3.7.3",
     "typescript": "^5.4.2"

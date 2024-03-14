@@ -24,11 +24,11 @@
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
-    "typescript": ">=4.7",
-    "vue": "^3.3.0"
+    "typescript": "^5.4.2",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@lyra/tsconfig": "workspace:^",
+    "@lyra/tsconfig": "0.0.1",
     "tsc-alias": "1.8.8",
     "typescript": "^5.4.2",
     "vite": "^5.1.6",
