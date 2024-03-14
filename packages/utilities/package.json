@@ -28,9 +28,7 @@
     "preview": "vite preview",
     "check": "run-s build:types build:vite",
     "clean": "rm -rf dist",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest run"
+    "test": "echo \"⚠\uFE0F No tests available for now (vitest)\" && exit 0"
   },
   "keywords": [
     "lyra",

@@ -15,7 +15,7 @@ jobs:
       - name: Install Tools & Dependencies
         uses: ./.github/actions/install/node
       - name: Build
-        run: pnpm build
+        run: pnpm run build
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: 🧪 Run Tests
