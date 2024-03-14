@@ -1,4 +1,13 @@
 {
+  "name": "mock-server",
+  "version": "1.0.0",
+  "description": "Mock server for testing",
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
   "private": true,
   "type": "module",
   "scripts": {

@@ -4,7 +4,11 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "author": "Yuniel Acosta <www.yunielacosta.com>",
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
   "license": "MIT",
   "files": [
     "index.css",

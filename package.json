@@ -1,11 +1,37 @@
 {
+  "name": "lyra",
+  "version": "0.0.1",
+  "description": "Lyra is a modern content management system for the web.",
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yacosta738/LyraUI.git",
+    "branch": "main"
+  },
+  "bugs": {
+    "url": "https://github.com/yacosta738/LyraUI/issues"
+  },
+  "homepage": "lyra-nwhm.onrender.com",
   "scripts": {
+    "update-deps": "pnpm update -i -r --latest",
+    "preinstall": "npx only-allow pnpm",
+    "setup": "pnpm install && pnpm exec playwright install",
     "postinstall": "syncpack fix-mismatches",
     "dev": "pnpm --recursive --parallel --stream run dev",
     "mock": "pnpm -C mock mock",
-    "build": "pnpm --recursive --parallel --stream run build",
+    "build:utilities": "pnpm -C packages/utilities build",
+    "build:ui": "pnpm -C packages/ui build",
+    "build:packages": "run-s build:utilities build:ui",
+    "build:apps": "pnpm -C apps/* --recursive --parallel --stream run build",
+    "build": "echo 🏗️ Building frontend && run-s build:packages build:apps",
+    "clean": "echo 🧹 Cleaning repo && pnpm --recursive --parallel --stream run clean",
     "preview": "pnpm --recursive --parallel --stream run preview",
     "check": "echo ✔︎ Checking frontend && pnpm --recursive --parallel --stream run lint && pnpm --recursive --stream run check",
     "format": "echo 🖌️ Formatting frontend && prettier --write . --plugin=prettier-plugin-astro",

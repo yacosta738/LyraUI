@@ -2,6 +2,12 @@
   "name": "@lyra/utilities",
   "version": "0.0.1",
   "description": "A collection of utilities for Lyra",
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
   "type": "module",
   "main": "./dist/utilities.js",
   "module": "./dist/utilities.js",
@@ -20,6 +26,19 @@
     "package.json",
     "dist"
   ],
+  "keywords": [
+    "lyra",
+    "utilities"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yacosta738/LyraUI.git",
+    "directory": "packages/utilities",
+    "branch": "main"
+  },
+  "bugs": {
+    "url": "https://github.com/yacosta738/LyraUI/issues"
+  },
   "scripts": {
     "build:types": "tsc --build",
     "build:vite": "vite build",
@@ -30,12 +49,6 @@
     "clean": "rm -rf dist",
     "test": "echo \"⚠️ No tests available for now (vitest)\" && exit 0"
   },
-  "keywords": [
-    "lyra",
-    "utilities"
-  ],
-  "author": "Yuniel Acosta <www.yunielacosta.com>",
-  "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.21"
   },

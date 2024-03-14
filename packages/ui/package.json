@@ -3,6 +3,12 @@
   "description": "UI components for Lyra",
   "version": "0.0.1",
   "private": true,
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
   "type": "module",
   "sideEffects": false,
   "main": "./dist/lyra-vue-ui.umd.js",
@@ -23,6 +29,15 @@
     "vue",
     "common ui"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yacosta738/LyraUI.git",
+    "directory": "packages/ui",
+    "branch": "main"
+  },
+  "bugs": {
+    "url": "https://github.com/yacosta738/LyraUI/issues"
+  },
   "scripts": {
     "build:types": "vue-tsc --noEmit && tsc-alias -p tsconfig.json",
     "build:vite": "vite build",

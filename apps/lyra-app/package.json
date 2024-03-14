@@ -1,6 +1,24 @@
 {
+  "name": "lyra-app",
+  "version": "0.0.1",
+  "description": "Lyra UI",
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yacosta738/LyraUI.git",
+    "directory": "apps/lyra-app",
+    "branch": "main"
+  },
+  "bugs": {
+    "url": "https://github.com/yacosta738/LyraUI/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

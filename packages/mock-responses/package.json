@@ -2,6 +2,12 @@
   "name": "@lyra/mock-responses",
   "description": "Mock responses for Lyra",
   "version": "0.0.1",
+  "author": {
+    "name": "Yanier Acosta Pérez",
+    "email": "yunielacosta738@gmail.com",
+    "url": "www.yunielacosta.com"
+  },
+  "license": "MIT",
   "private": true,
   "type": "module",
   "types": "./src/index.ts",
@@ -15,8 +21,8 @@
     }
   },
   "keywords": [
-    "vue",
-    "common ui"
+    "mock",
+    "common responses"
   ],
   "scripts": {
     "check": "tsc --noEmit",
