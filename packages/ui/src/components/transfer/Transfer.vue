@@ -29,7 +29,7 @@ function changeList() {
 }
 
 function toRight() {
-	const source = remove(sourceModel.value, (item) => item.checked);
+	const source = remove(sourceModel.value, (item: Item) => !!item.checked);
 
 	targetModel.value = [...targetModel.value, ...source].map((item) => ({
 		...item,
@@ -38,7 +38,7 @@ function toRight() {
 }
 
 function toLeft() {
-	const target = remove(targetModel.value, (item) => item.checked);
+	const target = remove(targetModel.value, (item: Item) => !!item.checked);
 
 	sourceModel.value = [...sourceModel.value, ...target].map((item) => ({
 		...item,
