@@ -483,6 +483,9 @@ importers:
       '@types/lodash':
         specifier: ^4.17.0
         version: 4.17.0
+      typescript:
+        specifier: ^5.4.2
+        version: 5.4.2
       vite-plugin-dts:
         specifier: ^3.7.3
         version: 3.7.3(@types/node@20.11.27)(typescript@5.4.2)(vite@5.1.6)

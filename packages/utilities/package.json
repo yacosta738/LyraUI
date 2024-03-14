@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./dist/utilities.umd.cjs",
   "module": "./dist/utilities.js",
-  "types": "./dist/src/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/utilities.js",
@@ -41,6 +41,7 @@
     "@lyra/config": "workspace:^",
     "@lyra/tsconfig": "workspace:^",
     "@types/lodash": "^4.17.0",
-    "vite-plugin-dts": "^3.7.3"
+    "vite-plugin-dts": "^3.7.3",
+    "typescript": "^5.4.2"
   }
 }
