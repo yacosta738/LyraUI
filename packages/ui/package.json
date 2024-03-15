@@ -43,7 +43,7 @@
     "build:vite": "vite build",
     "check": "vue-tsc --noEmit",
     "build": "run-p build:vite build:types",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist coverage",
     "test:unit": "vitest --coverage --run",
     "typecheck": "vue-tsc --noEmit"
   },

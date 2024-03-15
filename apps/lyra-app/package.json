@@ -24,6 +24,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "vue-tsc --noEmit",
+    "clean": "rm -rf dist coverage test-results",
     "test": "run-p test:unit test:e2e",
     "test:unit": "vitest --coverage --run",
     "test:e2e": "playwright test"

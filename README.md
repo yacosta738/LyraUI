@@ -1,8 +1,7 @@
-# Vue Starter
+# Lyra UI
 
 :poodle: A boilerplate for SPA Client with HTML5, Vue, and Tailwind on Vite.
 
-:rainbow: [Live Demo](https://vue-starter-6fa6.onrender.com) - The server application is [here](https://github.com/Shyam-Chen/Fastify-Starter).
 
 ## Table of Contents
 
@@ -170,55 +169,5 @@ API_URL=xxx
 
 The structure follows the LIFT Guidelines.
 
-```coffee
-.
-├── .github/workflows/ci.yml
-├── app
-│   ├── public
-│   ├── src
-│   │   ├── assets
-│   │   ├── components
-│   │   ├── composables
-│   │   ├── layouts
-│   │   ├── locales
-│   │   ├── middleware
-│   │   ├── plugins
-│   │   ├── routes
-│   │   ├── utilities
-│   │   ├── workers
-│   │   ├── App.vue
-│   │   ├── main.ts
-│   │   └── shims.d.ts
-│   ├── index.html
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── vite.config.ts
-├── e2e
-│   ├── src
-│   ├── package.json
-│   ├── playwright.config.shared.mjs
-│   └── tsconfig.json
-├── mock
-│   ├── src
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── vite.config.ts
-├── ui
-│   ├── src
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── vite.config.ts
-├── .editorconfig
-├── .eslintrc
-├── .gitignore
-├── .prettierrc
-├── biome.json
-├── Caddyfile
-├── compose.yaml
-├── Dockerfile
-├── package.json
-├── pnpm-lock.yaml
-├── pnpm-workspace.yaml
-├── README.md
-└── render.yaml
-```
+[Directory Structure](directory-structure.md)
+

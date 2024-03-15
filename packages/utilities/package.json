@@ -46,7 +46,7 @@
     "build": "run-p build:vite build:types",
     "preview": "vite preview",
     "check": "run-s build:types build:vite",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist coverage",
     "test": "vitest --coverage --run",
     "test:watch": "vitest --watch"
   },
